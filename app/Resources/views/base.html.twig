@@ -20,32 +20,9 @@
         <div class="hero-heading">
             <h1>{% block heading %}Search our Staff Directory{% endblock %}</h1>
         </div>
-        <form class="contents dir-search section__breakout--full-rounded smtb-mg">
-            <p>Look for an HCPSS staff member using any of the fields:</p>
-              <div class="contents dir-search__name--input">
-                  <label class="smtb-mg">
-                      <span class="sm-rght-mg"><strong>Staff Name</strong></span>
-                  <input type="text" name="given-name">   
-                  </label>
-              </div>
-              <div class="contents dir-search__location--ddown">
-                  <label class="smtb-mg"><span class="sm-rght-mg"><strong>Department</strong></span>
-                  <select name="department">
-                      <option value="null">-</option>
-                      <option value="curriculum-instruction">Curriculum and Instruction</option>
-                      <option value="finance">Finance</option>            
-                  </select>
-                  </label>
 
-                  <label class="smtb-mg"><span class="sm-rght-mg"><strong>School</strong></span>
-                  <select name="school">
-                      <option value="null">-</option>
-                      <option value="aes">Atholton Elementary</option>
-                  </select>
-                  </label>
-              </div>
-            <button style="background-color: #FECC6A;color: black;border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i> Search the Directory</button>
-        </form>
+        {{ render(controller('AppBundle:Dept:deptList')) }}
+
         {% block body %}{% endblock %}
       </main>
     </div>
