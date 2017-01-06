@@ -1,5 +1,4 @@
 # HCPSS Staff Directory Web Application
-========================
 
 ## Overview
 
