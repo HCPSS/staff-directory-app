@@ -29,7 +29,7 @@ This is written using the Symfony Standard Edition. The overall goal is to creat
 
 - [x] Create a static front-end prototype for application to understand project scope
 - [x] Create basic scaffolding for application using Symfony
-- [x] Create dummy database for application tests from CSV upload. This also helps with requesting desired schema from IT department
+- [x] Create dummy database for application tests from CSV upload. This also helps with requesting desired schema from IT department
 - [x] Department option menu must be generated from department column in database
 - [ ] School option menu must be generated from department column in database 
 - [ ] Output error page for 404s
