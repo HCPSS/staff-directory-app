@@ -22,7 +22,7 @@ This is written using the Symfony Standard Edition. The overall goal is to creat
 
 3. Allow users to look at department/school-level pages without having to add a person's name.
 
-4. Display the number of matches. 
+4. Display the number of matches. Highlight matched search results if user input contains a full or partial first or last name. 
 
 ### To dos:
 
