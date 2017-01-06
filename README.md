@@ -1,69 +1,44 @@
-Symfony Standard Edition
+# HCPSS Staff Directory Web Application
 ========================
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+## Overview
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+This is written using the Symfony Standard Edition. The overall goal is to create a simple search experience for site users to find staff members at HCPSS central and annex offices, as well as school-level administrative staff. 
 
-What's inside?
---------------
+## Application Goals 
 
-The Symfony Standard Edition is configured with the following defaults:
+1. Have data come directly from workday API via daily upload, which would be handled by IT. This data would be uploaded to a specific database and queried against in the application, rather than the application doing API calls to workday. 
 
-  * An AppBundle you can use to start coding;
+2. Handle URLs inside controller based on database schema rather than hardcoded URLs. This will also be useful for generating department and school-level pages. 
 
-  * Twig as the only configured template engine;
+3. Query the name, phone, location, and position, but omit middle initial data.
 
-  * Doctrine ORM/DBAL;
+4. Have twig loop through and output individual staff records
 
-  * Swiftmailer;
+## UI Goals
 
-  * Annotations enabled for everything.
+1. Give application the ability to search for first and last names in search field, as well as department and schools. Users will have the flexibility to search using all fields or just one.
 
-It comes pre-configured with the following bundles:
+2. Generate unique error messages for results not found. This would include either the main hcpss phone line for names that are not found, or department/school-level phone numbers for when a user provides those specific search parameters.
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+3. Allow users to look at department/school-level pages without having to add a person's name.
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+4. Display the number of matches. 
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+### To dos:
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
-
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
-
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
-
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
-
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
-
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
-
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
-
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
-
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
-
-Enjoy!
-
-[1]:  https://symfony.com/doc/2.8/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.8/doctrine.html
-[8]:  https://symfony.com/doc/2.8/templating.html
-[9]:  https://symfony.com/doc/2.8/security.html
-[10]: https://symfony.com/doc/2.8/email.html
-[11]: https://symfony.com/doc/2.8/logging.html
-[12]: https://symfony.com/doc/2.8/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+[x] Create a static front-end prototype for application to understand project scope
+[x] Create basic scaffolding for application using Symfony
+[x] Create dummy database for application tests from CSV upload. This also helps with requesting desired schema from IT department
+[x] Department option menu must be generated from department column in database
+[] School option menu must be generated from department column in database 
+[] Output error page for 404s
+[] Output error page when results are not found
+[] Dynamic routes for department pages
+[] Dynamic routes for school-level pages
+[] Output for first and last name search
+[] Output for first name search
+[] Output for last name search
+[] Determine how to update names outside of workday API that persists to database and overrides workday upload
+[] Highlight searched terms in result output
+[] Generate unique error messages for results not found.
