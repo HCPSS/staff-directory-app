@@ -27,18 +27,18 @@ This is written using the Symfony Standard Edition. The overall goal is to creat
 
 ### To dos:
 
-[ x ] Create a static front-end prototype for application to understand project scope
-[ x ] Create basic scaffolding for application using Symfony
-[ x ] Create dummy database for application tests from CSV upload. This also helps with requesting desired schema from IT department
-[ x ] Department option menu must be generated from department column in database
-[ ] School option menu must be generated from department column in database 
-[ ] Output error page for 404s
-[ ] Output error page when results are not found
-[ ] Dynamic routes for department pages
-[ ] Dynamic routes for school-level pages
-[ ] Output for first and last name search
-[ ] Output for first name search
-[ ] Output for last name search
-[ ] Determine how to update names outside of workday API that persists to database and overrides workday upload
-[ ] Highlight searched terms in result output
-[ ] Generate unique error messages for results not found.
+- [ x ] Create a static front-end prototype for application to understand project scope
+- [ x ] Create basic scaffolding for application using Symfony
+- [ x ] Create dummy database for application tests from CSV upload. This also helps with requesting desired schema from IT department
+- [ x ] Department option menu must be generated from department column in database
+- [ ] School option menu must be generated from department column in database 
+- [ ] Output error page for 404s
+- [ ] Output error page when results are not found
+- [ ] Dynamic routes for department pages
+- [ ] Dynamic routes for school-level pages
+- [ ] Output for first and last name search
+- [ ] Output for first name search
+- [ ] Output for last name search
+- [ ] Determine how to update names outside of workday API that persists to database and overrides workday upload
+- [ ] Highlight searched terms in result output
+- [ ] Generate unique error messages for results not found.
