@@ -14,10 +14,9 @@ class FromDatabaseController extends Controller
    */
   public function getStaffAction()
   {
-    $repo = $this->getDoctrine()->getRepository('AppBundle:Staff');
-
-    // dynamic method names to find a staff member(s) based on a column value
-    $staff_list = $repo->findAll();
+    $em = $this->getDoctrine()->getManager();
+    $staff_list = $em->getRepository('AppBundle:Staff')
+      ->findAllOrderedByName();
 
     return $this->render('default/test.html.twig', array('staff'=>$staff_list));
   }
