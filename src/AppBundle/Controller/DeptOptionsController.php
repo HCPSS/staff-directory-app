@@ -6,14 +6,12 @@ use AppBundle\Entity\Staff;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
 
-class DeptController extends Controller
+class DeptOptionsController extends Controller
 {
 
-  public function deptListAction()
+  public function deptOptListAction()
   {
-    $repo = $this->getDoctrine()->getRepository('AppBundle:Staff');
 
     $em = $this->getDoctrine()->getManager();
     $depts = $em->getRepository('AppBundle:Staff')

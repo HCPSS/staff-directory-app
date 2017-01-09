@@ -6,18 +6,26 @@ use AppBundle\Entity\Staff;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 
-class FromDatabaseController extends Controller
+class StaffCardRender extends Controller
 {
   /**
-   * @Route("/test/assessment")
+   * @Route("/directory")
    */
-  public function getStaffAction()
+  public function getStaffAction(request $request)
   {
     $em = $this->getDoctrine()->getManager();
     $staff_list = $em->getRepository('AppBundle:Staff')
       ->findAllOrderedByName();
 
-    return $this->render('default/test.html.twig', array('staff'=>$staff_list));
+    $searchTerm = $request->query->get('department');
+    var_dump($searchTerm);
+
+    return $this->render(
+    	'default/staff-card.html.twig', 
+    	array('staff'=>$staff_list)
+    );
   }
+
 }
