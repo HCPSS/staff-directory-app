@@ -12,12 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class StaffRepository extends EntityRepository
 {
-	public function findAllOrderedByName() {
+	public function findAllOrderedByName($searchTerm) {
 		return $this->getEntityManager()
             ->createQuery(
-                'SELECT p 
-                FROM AppBundle:Staff p 
-                ORDER BY p.name ASC'
+                "SELECT staff 
+                FROM AppBundle:Staff staff 
+                WHERE staff.name LIKE '%$searchTerm%'
+                ORDER BY staff.name ASC"
             )
             ->getResult();
 	}
