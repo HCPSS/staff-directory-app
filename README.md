@@ -14,6 +14,8 @@ This is written using the Symfony Standard Edition. The overall goal is to creat
 
 4. Have twig loop through and output individual staff records
 
+5. Perform a security audit after basic functionality is complete. Ensure that all fields are secured against XSS vulnerabilities and SQL injection attacks. 
+
 ## UI Goals
 
 1. Give application the ability to search for first and last names in search field, as well as department and schools. Users will have the flexibility to search using all fields or just one.
