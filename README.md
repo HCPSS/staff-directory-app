@@ -37,9 +37,9 @@ This is written using the Symfony Standard Edition. The overall goal is to creat
 - [ ] Output error page when results are not found
 - [ ] Dynamic routes for department pages
 - [ ] Dynamic routes for school-level pages
-- [ ] Output for first and last name search
-- [ ] Output for first name search
-- [ ] Output for last name search
+- [x] Output for first and last name search
+- [x] Output for first name search
+- [x] Output for last name search
 - [ ] Determine how to update names outside of workday API that persists to database and overrides workday upload
 - [ ] Highlight searched terms in result output
 - [ ] Generate unique error messages for results not found.
