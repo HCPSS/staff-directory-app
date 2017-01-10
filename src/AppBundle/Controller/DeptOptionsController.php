@@ -9,7 +9,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DeptOptionsController extends Controller
 {
-
+  /**
+   * @Route("/departments")
+   */
   public function deptOptListAction()
   {
 

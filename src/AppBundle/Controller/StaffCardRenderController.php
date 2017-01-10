@@ -14,18 +14,22 @@ class StaffCardRenderController extends Controller
   /**
    * @Route("/directory")
    */
-  public function getStaffAction(request $request)
+  public function getDepartmentStaffAction(request $request)
   {
     $em = $this->getDoctrine()->getManager();
     $staff_list = $em->getRepository('AppBundle:Staff');
 
-    $searchTerm = $request->query->get('department');
+    $searchTerm = $request->query->get('given-name');
 
-    $department = $staff_list->findByDepartment($searchTerm);
+    if ($searchTerm != null) {
+      $department = $staff_list->findAllOrderedByName($searchTerm);
+    } else {
+      $department = null;
+    }
 
     return $this->render(
-    	'default/staff-card.html.twig', 
-    	array('staff'=>$department)
+      'default/staff-card.html.twig', 
+      array('staff'=>$department)
     );
   }
 

@@ -1,8 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}STUFF{% endblock %}
+{% block title %}HCPSS Staff Directory{% endblock %}
 
 {% block body %}
+
+  <section class="section__breakout--full-rounded smtb-mg">
+
+    <form method="get" class="contents dir-search">
+      <div class="contents dir-search__name--input">
+        <p>Find an HCPSS staff member by name.</p>
+        <label>
+            <span class="sm-rght-mg"><strong>Staff Name:</strong></span>
+        <input type="text" name="given-name">   
+        </label>
+      </div>
+      <button class="smtb-mg" style="background-color: #FECC6A;color: black;border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i> Search the Directory</button>
+    </form>
+
+    <p><strong>Looking for a specific department?</strong> <a href="/departments">View our department directory &rarr;</a></p>
+    <p><strong>Need to contact a school?</strong> <a href="http://www.hcpss.org/schools/">Search our school directory &rarr;</a></p>
+    
+  </section>
 
 	{% for person in staff %}
     <section class="dir-search__entry">
