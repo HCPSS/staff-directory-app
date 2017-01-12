@@ -42,3 +42,6 @@ This is written using the Symfony Standard Edition bundles. The overall goal is 
 - [ ] Determine how to update names outside of workday API that persists to database and overrides workday upload
 - [ ] Highlight searched terms in result output
 - [ ] Generate unique error messages for results not found.
+- [ ] Create a vagrant box for easily sharing development environment
+- [ ] Come up with deployment strategy. Explore elastic beanstalk as a possibility
+- [ ] Determine if this needs to be a separate domain (e.g., directory.hcpss.org)
