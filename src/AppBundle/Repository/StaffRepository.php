@@ -26,7 +26,7 @@ class StaffRepository extends EntityRepository
 	public function findDeptOrderedByNameOnce() {
 		return $this->getEntityManager()
             ->createQuery(
-                'SELECT a 
+                'SELECT a.department 
                 FROM AppBundle:Staff a
                 GROUP BY a.department'
             )
