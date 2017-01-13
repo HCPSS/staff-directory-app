@@ -5,24 +5,30 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Staff;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\Routing\Generator\UrlGenerator;
-use Symfony\Component\Routing\RouteCollection;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DeptPageController extends Controller
 {
-
-  public function getDepartmentPageAction()
+  /**
+   * @Route("/directory/departments")
+   */
+  public function deptOptListAction()
   {
-    $routes = new RouteCollection();
-    $routes->add('department_page', new Route('/departments/{slug}'));
 
-    $context = new RequestContext('/');
+    $em = $this->getDoctrine()->getManager();
+    $depts = $em->getRepository('AppBundle:Staff')
+      ->findDeptOrderedByNameOnce();
 
-    $generator = new UrlGenerator($routes, $context);
-
-    $url = $generator->generate('department_page', array(
-        'slug' => 'assessment',
-    ));
+    return $this->render(
+      'default/dept-options.html.twig',
+      array('staff' => $depts)
+    );
   }
-
+  /**
+    * @Route("/directory/departments/{slug}", name="department")
+    */
+  public function getDepartmentPageAction($slug)
+  {
+    return $this->render('::Department/'.$slug.'.html.twig');
+  }
 }

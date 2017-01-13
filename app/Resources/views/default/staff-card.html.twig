@@ -17,7 +17,7 @@
       <button class="smtb-mg" style="background-color: #FECC6A;color: black;border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i> Search the Directory</button>
     </form>
 
-    <p><strong>Looking for a specific department?</strong> <a href="/departments">View our department directory &rarr;</a></p>
+    <p><strong>Looking for a specific department?</strong> <a href="/directory/departments">View our department directory &rarr;</a></p>
     <p><strong>Need to contact a school?</strong> <a href="http://www.hcpss.org/schools/">Search our school directory &rarr;</a></p>
     
   </section>
@@ -28,7 +28,7 @@
           <h3>{% if 'Principal' in person.position and 'Assistant' not in person.position or 'Director' in person.position %}<i class="fa fa-star" aria-hidden="true"></i> {% endif %} <strong>{{ person.name }}</strong></h3>
       </div>
       <div class="dir-search__entry--contact">
-          <p>{{ person.department }}</p>
+          <p><a href="{{ path('department', { 'slug': person.department|lower|replace({' ': '-'}) }) }}">{{ person.department }}</a></p>
           <p><strong>Position:</strong> {{ person.position }}</p>
           {% if person.email != null %}<p><strong>Email:</strong> {{ person.email }}</p>{% endif %}
           {% if person.phone != null %}<p><strong>Phone:</strong> {{ person.phone }}</p>{% endif %}
