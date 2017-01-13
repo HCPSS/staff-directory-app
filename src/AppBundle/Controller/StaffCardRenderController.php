@@ -28,7 +28,7 @@ class StaffCardRenderController extends Controller
     }
 
     return $this->render(
-      'default/staff-card.html.twig', 
+      'default/staff-search.html.twig', 
       array('staff'=>$department)
     );
   }

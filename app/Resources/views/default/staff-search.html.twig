@@ -22,19 +22,6 @@
     
   </section>
 
-	{% for person in staff %}
-    <section class="dir-search__entry">
-      <div class="dir-search__entry--name">
-          <h3>{% if 'Principal' in person.position and 'Assistant' not in person.position or 'Director' in person.position %}<i class="fa fa-star" aria-hidden="true"></i> {% endif %} <strong>{{ person.name }}</strong></h3>
-      </div>
-      <div class="dir-search__entry--contact">
-          <p><a href="{{ path('department', { 'slug': person.department|lower|replace({' ': '-'}) }) }}">{{ person.department }}</a></p>
-          <p><strong>Position:</strong> {{ person.position }}</p>
-          {% if person.email != null %}<p><strong>Email:</strong> {{ person.email }}</p>{% endif %}
-          {% if person.phone != null %}<p><strong>Phone:</strong> {{ person.phone }}</p>{% endif %}
-          <p><strong>Location:</strong> {{ person.location }}</p>
-      </div>             
-    </section>
-	{% endfor %}
+  {{ include('default/staff-card--render.html.twig', { 'staff': staff }) }}
 
 {% endblock %}
