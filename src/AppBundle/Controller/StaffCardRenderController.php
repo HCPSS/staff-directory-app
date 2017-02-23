@@ -10,7 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class StaffCardRenderController extends Controller
 {
-
   /**
    * @Route("/directory")
    */
@@ -22,15 +21,14 @@ class StaffCardRenderController extends Controller
     $searchTerm = $request->query->get('given-name');
 
     if ($searchTerm != null) {
-      $department = $staff_list->findAllOrderedByName($searchTerm);
+      $name = $staff_list->findAllOrderedByName($searchTerm);
     } else {
-      $department = null;
+      $name = null;
     }
 
     return $this->render(
       'default/staff-search.html.twig', 
-      array('staff'=>$department)
+      array('staff'=>$name)
     );
   }
-
 }

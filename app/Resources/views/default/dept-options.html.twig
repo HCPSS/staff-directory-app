@@ -8,7 +8,7 @@
 
   <ul>
     {% for name in staff %}
-    	<li><a href="{{ path('department', { 'slug': name.department|lower|replace({' ': '-'}) }) }}">{{ name.department }}</a></li>
+    	<li><a href="{{ name.department }}">{{ name.department }}</a></li>
     {% endfor %}
   </ul>
 
