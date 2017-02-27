@@ -22,6 +22,8 @@
     
   </section>
 
-  {{ include('default/staff-card--render.html.twig', { 'staff': staff }) }}
+  {% for person in staff %}
+    {{ include('default/staff-card--render.html.twig') }}
+  {% endfor %}
 
 {% endblock %}

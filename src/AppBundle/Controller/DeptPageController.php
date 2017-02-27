@@ -30,14 +30,12 @@ class DeptPageController extends Controller
   public function getDepartmentPageAction($slug)
   {
     $repo = $this->getDoctrine()
-    ->getRepository('AppBundle:Staff')
-    ->find($slug);
-
-    $slugName = $repo->getName();
+    ->getRepository('AppBundle:Department')
+    ->findOneBy(array('slug' => $slug));
 
     return $this->render(
-      '::Department/'.$slug.'.html.twig',
-      array('staff' => $slugName)
+      '::Department/department.html.twig',
+      array('department' => $repo )
     );
   }
 }

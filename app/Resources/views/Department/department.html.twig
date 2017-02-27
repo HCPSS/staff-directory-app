@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h2>{{ department.name }}</h2>
+{% autoescape false %}
+<p>{{ department.description }}</p>
+{% endautoescape %}
+
+{% for person in department.staffMember %}
+	{{ include('default/staff-card--render.html.twig') }}
+{% endfor %}
+
+{% endblock %}

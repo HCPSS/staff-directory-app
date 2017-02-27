@@ -31,12 +31,11 @@ class Staff
      */
     private $name;
 
+    // ...
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="department", type="string", length=255, nullable=true)
-     * @ORM\ManyToOne(targetEntity="Department", inversedBy="name")
-     * @ORM\JoinColumn(name="department", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Department", inversedBy="staffMember")
+     * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
      */
     private $department;
 
@@ -100,29 +99,6 @@ class Staff
     public function getName()
     {
         return $this->name;
-    }
-
-    /**
-     * Set department
-     *
-     * @param string $department
-     * @return Staff
-     */
-    public function setDepartment($department)
-    {
-        $this->department = $department;
-
-        return $this;
-    }
-
-    /**
-     * Get department
-     *
-     * @return string 
-     */
-    public function getDepartment()
-    {
-        return $this->department;
     }
 
     /**
@@ -215,5 +191,28 @@ class Staff
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set department
+     *
+     * @param \AppBundle\Entity\Department $department
+     * @return Staff
+     */
+    public function setDepartment(\AppBundle\Entity\Department $department = null)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return \AppBundle\Entity\Department 
+     */
+    public function getDepartment()
+    {
+        return $this->department;
     }
 }

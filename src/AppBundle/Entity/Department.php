@@ -3,7 +3,6 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Department
@@ -25,6 +24,25 @@ class Department
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=255)
+     */
+    private $name;
+
+    // ...
+
+    /**
+     * @ORM\OneToMany(targetEntity="Staff", mappedBy="department")
+     */
+    private $staffMember;
+
+    public function __construct()
+    {
+        $this->staffMember = new ArrayCollection();
+    }
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="slug", type="string", length=255)
      */
     private $slug;
@@ -32,30 +50,9 @@ class Department
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
-     * @ORM\OneToMany(targetEntity="Staff", mappedBy="department")
+     * @ORM\Column(name="description", type="text")
      */
-    private $name;
-
-    public function __construct()
-    {
-        $this->name = new ArrayCollection();
-    }
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
-     */
-    private $phone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="fax", type="string", length=255, nullable=true)
-     */
-    private $fax;
-
+    private $description;
 
     /**
      * Get id
@@ -65,29 +62,6 @@ class Department
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     * @return Department
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string 
-     */
-    public function getSlug()
-    {
-        return $this->slug;
     }
 
     /**
@@ -114,48 +88,81 @@ class Department
     }
 
     /**
-     * Set phone
+     * Add staffMember
      *
-     * @param string $phone
+     * @param \AppBundle\Entity\Staff $staffMember
      * @return Department
      */
-    public function setPhone($phone)
+    public function addStaffMember(\AppBundle\Entity\Staff $staffMember)
     {
-        $this->phone = $phone;
+        $this->staffMember[] = $staffMember;
 
         return $this;
     }
 
     /**
-     * Get phone
+     * Remove staffMember
      *
-     * @return string 
+     * @param \AppBundle\Entity\Staff $staffMember
      */
-    public function getPhone()
+    public function removeStaffMember(\AppBundle\Entity\Staff $staffMember)
     {
-        return $this->phone;
+        $this->staffMember->removeElement($staffMember);
     }
 
     /**
-     * Set fax
+     * Get staffMember
      *
-     * @param string $fax
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getStaffMember()
+    {
+        return $this->staffMember;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
      * @return Department
      */
-    public function setFax($fax)
+    public function setSlug($slug)
     {
-        $this->fax = $fax;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get fax
+     * Get slug
      *
      * @return string 
      */
-    public function getFax()
+    public function getSlug()
     {
-        return $this->fax;
+        return $this->slug;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Department
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
