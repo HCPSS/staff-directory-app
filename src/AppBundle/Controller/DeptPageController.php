@@ -21,7 +21,7 @@ class DeptPageController extends Controller
 
     return $this->render(
       'default/dept-options.html.twig',
-      array('staff' => $depts)
+      ['staff' => $depts]
     );
   }
   /**
@@ -35,7 +35,7 @@ class DeptPageController extends Controller
 
     return $this->render(
       '::Department/department.html.twig',
-      array('department' => $repo )
+      ['department' => $repo]
     );
   }
 }

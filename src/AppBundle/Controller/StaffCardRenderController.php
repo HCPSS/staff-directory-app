@@ -29,8 +29,8 @@ class StaffCardRenderController extends Controller
     $isAjax = $request->isXmlHttpRequest();
 
     return $this->render(
-      'default/child-test.html.twig', 
-      array('staff'=>$name, 'isAjax'=>$isAjax)
+      'default/staff-name-render.html.twig', 
+        ['staff'=>$name, 'isAjax'=>$isAjax]
     );
   }
 }

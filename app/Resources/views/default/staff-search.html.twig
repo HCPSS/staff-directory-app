@@ -4,30 +4,33 @@
 
 {% block body %}
 
-  <section class="section__breakout--full-rounded smtb-mg">
-
-    <form method="get" class="contents dir-search">
-      <div class="contents dir-search__name--input">
-        <p>Find an HCPSS staff member by name.</p>
-        <label>
-            <span class="sm-rght-mg"><strong>Staff Name:</strong></span>
-        <input type="text" name="given-name" id="search-field">   
-        </label>
-      </div>
-      <button id="dir-submit" class="smtb-mg" style="background-color: #FECC6A;color: black;border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i> Search the Directory</button>
-    </form>
-
-    <p><strong>Looking for a specific department?</strong> <a href="/directory/departments">View our department directory &rarr;</a></p>
-    <p><strong>Need to contact a school?</strong> <a href="http://www.hcpss.org/schools/">Search our school directory &rarr;</a></p>
-    
-  </section>
-
   <section class="contents">
-    <div id="result-output"></div>
+    <h2>Using our directory</h2>
+    <p>Search for a full or partial name of an HCPSS staff member.</p>
+    <form class="contents dir-search smtb-mg" method="GET">
+      <div class="contents dir-search__name--input">
+         <label for="given-name">
+          <span><strong>Staff Name:</strong></span>
+         </label>
+        <input type="text" name="given-name" id="search-field" placeholder="Search by first or last name">
+        <button id="dir-submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+      </div>
+    </form>
   </section>
+
+  <div id="result-output"></div>
     
   <div id="render-cards">
       
   </div>
+
+  <section class="contents">
+    <div class="col-left">
+      <p><strong>Looking for a school-based staff member?</strong> Use our <a href="http://www.hcpss.org/schools/">interactive school directory</a> for school websites and their phone numbers.</p>
+    </div>
+    <div class="col-right">
+      <p><strong>Looking for a department?</strong> See a <a href="/directory/departments/">list of all HCPSS departments</a> and their staff members.</p>      
+    </div>
+  </section>  
 
 {% endblock %}
