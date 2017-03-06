@@ -11,10 +11,10 @@
         <p>Find an HCPSS staff member by name.</p>
         <label>
             <span class="sm-rght-mg"><strong>Staff Name:</strong></span>
-        <input type="text" name="given-name">   
+        <input type="text" name="given-name" id="search-field">   
         </label>
       </div>
-      <button class="smtb-mg" style="background-color: #FECC6A;color: black;border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i> Search the Directory</button>
+      <button id="dir-submit" class="smtb-mg" style="background-color: #FECC6A;color: black;border-radius: 5px;"><i class="fa fa-search" aria-hidden="true"></i> Search the Directory</button>
     </form>
 
     <p><strong>Looking for a specific department?</strong> <a href="/directory/departments">View our department directory &rarr;</a></p>
@@ -22,8 +22,12 @@
     
   </section>
 
-  {% for person in staff %}
-    {{ include('default/staff-card--render.html.twig') }}
-  {% endfor %}
+  <section class="contents">
+    <div id="result-output"></div>
+  </section>
+    
+  <div id="render-cards">
+      
+  </div>
 
 {% endblock %}

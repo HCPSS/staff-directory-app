@@ -1,4 +1,4 @@
-    <section class="dir-search__entry">
+    <div class="dir-search__entry">
       <div class="dir-search__entry--name">
           <h3>{% if 'Principal' in person.position and 'Assistant' not in person.position or 'Director' in person.position %}<i class="fa fa-star" aria-hidden="true"></i> {% endif %} <strong>{{ person.name }}</strong></h3>
       </div>
@@ -9,4 +9,4 @@
           {% if person.phone != null %}<p><strong>Phone:</strong> {{ person.phone }}</p>{% endif %}
           <p><strong>Location:</strong> {{ person.location }}</p>
       </div>
-    </section>
+    </div>

@@ -1,0 +1,13 @@
+{% extends isAjax ? 'default/blank.html.twig' : 'default/staff-search.html.twig' %}
+
+{% block body %}
+
+{% if isAjax == false %}
+	{{ parent() }}
+{% endif %}
+
+  {% for person in staff %}
+      {{ include('default/staff-card--render.html.twig') }}
+  {% endfor %}
+
+{% endblock %}
