@@ -48,11 +48,12 @@ class Department
     private $slug;
 
     /**
-     * @var string
+     * @var text
      *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
 
     /**
      * Get id
@@ -113,7 +114,7 @@ class Department
     /**
      * Get staffMember
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return string 
      */
     public function getStaffMember()
     {

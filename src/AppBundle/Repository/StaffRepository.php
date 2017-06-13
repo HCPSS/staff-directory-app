@@ -17,8 +17,8 @@ class StaffRepository extends EntityRepository
     ->createQuery(
         "SELECT staff 
         FROM AppBundle:Staff staff 
-        WHERE staff.name LIKE '%$searchTerm%'
-        ORDER BY staff.name ASC"
+        WHERE staff.firstName LIKE '%$searchTerm%' OR staff.lastName LIKE '%$searchTerm%'
+        ORDER BY staff.lastName ASC"
     )
     ->getResult();
 	}
