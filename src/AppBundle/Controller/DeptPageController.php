@@ -21,7 +21,7 @@ class DeptPageController extends Controller
 
     return $this->render(
       'default/dept-options.html.twig',
-      ['staff' => $depts]
+      ['department' => $depts]
     );
   }
   /**

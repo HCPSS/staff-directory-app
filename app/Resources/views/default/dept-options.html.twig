@@ -7,8 +7,8 @@
 {% block body %}
 
   <ul>
-    {% for name in staff %}
-    	<li><a href="{{ name.department.name }}">{{ name.department.name }}</a></li>
+    {% for dept in department %}
+    	<li><a href="{{ dept.name }}">{{ dept.name }}</a></li>
     {% endfor %}
   </ul>
 

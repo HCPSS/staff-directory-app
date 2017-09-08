@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Staff
  *
@@ -43,12 +43,20 @@ class Staff
     private $position;
 
     /**
-     * @var text
      *
-     * @ORM\Column(name="department", type="text")
+     * @ORM\ManyToOne(targetEntity="Department", inversedBy="staffMember")
+     * @ORM\JoinColumn(name="dept_id", referencedColumnName="id")
      */
     private $department;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="dept_id", type="integer")
+     */
+
+    private $dept_id;
+     
     /**
      * @var string
      *
