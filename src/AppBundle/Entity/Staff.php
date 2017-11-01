@@ -249,4 +249,27 @@ class Staff
     {
         return $this->location;
     }
+
+    /**
+     * Set dept_id
+     *
+     * @param integer $deptId
+     * @return Staff
+     */
+    public function setDeptId($deptId)
+    {
+        $this->dept_id = $deptId;
+
+        return $this;
+    }
+
+    /**
+     * Get dept_id
+     *
+     * @return integer 
+     */
+    public function getDeptId()
+    {
+        return $this->dept_id;
+    }
 }

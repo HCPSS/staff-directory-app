@@ -14,7 +14,6 @@ class DeptPageController extends Controller
    */
   public function deptOptListAction()
   {
-
     $em = $this->getDoctrine()->getManager();
     $depts = $em->getRepository('AppBundle:Staff')
       ->findDeptOrderedByNameOnce();
@@ -25,7 +24,7 @@ class DeptPageController extends Controller
     );
   }
   /**
-    * @Route("/directory/departments/{slug}", name="department")
+    * @Route("/directory/department/{slug}", name="department")
     */
   public function getDepartmentPageAction($slug)
   {
