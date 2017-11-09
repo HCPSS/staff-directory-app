@@ -15,8 +15,8 @@ class StaffRepository extends EntityRepository
 	public function findAllOrderedByName($searchTerm) {
 		return $this->getEntityManager()
     ->createQuery(
-        "SELECT staff 
-        FROM AppBundle:Staff staff 
+        "SELECT staff
+        FROM AppBundle:Staff staff
         WHERE staff.firstName LIKE '%$searchTerm%' OR staff.lastName LIKE '%$searchTerm%'
         ORDER BY staff.lastName ASC"
     )
@@ -26,9 +26,9 @@ class StaffRepository extends EntityRepository
 	public function findDeptOrderedByNameOnce() {
 		return $this->getEntityManager()
     ->createQuery(
-        'SELECT a.name 
+        "SELECT a.name, a.slug
         FROM AppBundle:Department a
-        GROUP BY a.name'
+        GROUP BY a.name"
     )
     ->getResult();
 	}

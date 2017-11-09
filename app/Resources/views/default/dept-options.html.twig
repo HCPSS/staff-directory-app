@@ -8,9 +8,11 @@
 		<h1>HCPSS Departments</h1>
 	</div>
 
+	<p><a href="/directory">&larr; Return to search</a></p>
+
   <ul>
     {% for dept in department %}
-    	<li><a href="{{ dept.name }}">{{ dept.name }}</a></li>
+    	<li><a href="department/{{ dept.slug }}">{{ dept.name }}</a></li>
     {% endfor %}
   </ul>
 
