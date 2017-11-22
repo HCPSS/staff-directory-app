@@ -31,5 +31,5 @@ class StaffRepository extends EntityRepository
         GROUP BY a.name"
     )
     ->getResult();
-	}
+	}    
 }
