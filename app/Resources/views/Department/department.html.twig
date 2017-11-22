@@ -6,16 +6,23 @@
 	<h1>{{ department.name }}</h1>
 </div>	
 
+<section class="contents">
+<div class="col-left">
 <p><a href="/directory">&larr; Return to search</a></p>
+</div>
+<div class="col-right">
+<p style="float:right;"><a href="http://www.hcpss.org/f/aboutus/orgcharts.pdf">View the HCPSS Organizational Charts</a> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
+</div>
+</section>
+
+<div id="render-cards">
+{% for person in department.staffType %}
+    {{ include('default/card-data-search-page.html.twig') }}
+{% endfor %}
+</div>
 
 {% autoescape false %}
   <p>{{ department.description }}</p>
 {% endautoescape %}
-
-<div id="render-cards">
-{% for person in department.staffMember %}
-	{{ include('default/card-data.html.twig') }}
-{% endfor %}
-</div>
 
 {% endblock %}
