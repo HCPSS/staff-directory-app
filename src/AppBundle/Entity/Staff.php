@@ -4,14 +4,12 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Staff
  *
  * @ORM\Table(name="staff")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\StaffRepository")
  */
-
 class Staff
 {
     /**
@@ -21,49 +19,62 @@ class Staff
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-
     private $id;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="last_name", type="string", length=255)
      */
-    private $name;
-
-    // ...
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Department", inversedBy="staffMember")
-     * @ORM\JoinColumn(name="department_id", referencedColumnName="id")
-     */
-    private $department;
+    private $lastName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="position", type="string", length=255, nullable=true)
+     * @ORM\Column(name="first_name", type="string", length=255)
+     */
+    private $firstName;
+
+    /**
+     * @var text
+     *
+     * @ORM\Column(name="position", type="text")
      */
     private $position;
 
     /**
+     *
+     * @ORM\ManyToOne(targetEntity="Department", inversedBy="staffMember")
+     * @ORM\JoinColumn(name="dept_id", referencedColumnName="id")
+     */
+    private $department;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="dept_id", type="integer")
+     */
+
+    private $dept_id;
+     
+    /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", nullable=true)
+     * @ORM\Column(name="phone", type="string", length=255)
      */
     private $phone;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="location", type="string", length=255, nullable=true)
+     * @ORM\Column(name="location", type="string", length=255)
      */
     private $location;
 
@@ -79,26 +90,49 @@ class Staff
     }
 
     /**
-     * Set name
+     * Set firstName
      *
-     * @param string $name
+     * @param string $firstName
      * @return Staff
      */
-    public function setName($name)
+    public function setFirstName($firstName)
     {
-        $this->name = $name;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get firstName
      *
      * @return string 
      */
-    public function getName()
+    public function getFirstName()
     {
-        return $this->name;
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return Staff
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 
     /**
@@ -125,9 +159,32 @@ class Staff
     }
 
     /**
+     * Set department
+     *
+     * @param string $department
+     * @return Staff
+     */
+    public function setDepartment($department)
+    {
+        $this->department = $department;
+
+        return $this;
+    }
+
+    /**
+     * Get department
+     *
+     * @return string 
+     */
+    public function getDepartment()
+    {
+        return $this->department;
+    }
+
+    /**
      * Set phone
      *
-     * @param integer $phone
+     * @param string $phone
      * @return Staff
      */
     public function setPhone($phone)
@@ -140,7 +197,7 @@ class Staff
     /**
      * Get phone
      *
-     * @return integer 
+     * @return string 
      */
     public function getPhone()
     {
@@ -194,25 +251,25 @@ class Staff
     }
 
     /**
-     * Set department
+     * Set dept_id
      *
-     * @param \AppBundle\Entity\Department $department
+     * @param integer $deptId
      * @return Staff
      */
-    public function setDepartment(\AppBundle\Entity\Department $department = null)
+    public function setDeptId($deptId)
     {
-        $this->department = $department;
+        $this->dept_id = $deptId;
 
         return $this;
     }
 
     /**
-     * Get department
+     * Get dept_id
      *
-     * @return \AppBundle\Entity\Department 
+     * @return integer 
      */
-    public function getDepartment()
+    public function getDeptId()
     {
-        return $this->department;
+        return $this->dept_id;
     }
 }

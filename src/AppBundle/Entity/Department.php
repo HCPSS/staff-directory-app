@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Department
  *
@@ -48,11 +48,12 @@ class Department
     private $slug;
 
     /**
-     * @var string
+     * @var text
      *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
 
     /**
      * Get id
@@ -113,11 +114,63 @@ class Department
     /**
      * Get staffMember
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return string 
      */
     public function getStaffMember()
     {
         return $this->staffMember;
+    }
+
+    /**
+     * Get staffMember
+     *
+     * @return string 
+     */
+    public function getStaffType()
+    {
+      $p = $this->getStaffMember()->toArray();
+
+        $callouts_names = array('Superintendent', 'Chief', 'Management Officer', 'Director', 'Counsel', 'Coordinator', 'Manager', 'Executive Assistant', 'Secretary');
+
+        $callouts_pos = array();
+
+        foreach ($p as $index => $member) {
+          foreach ($callouts_names as $names) {
+            if (strpos($member->getPosition(), $names) !== false) {
+              unset($p[$index]);
+              $callouts_pos[$names][]=$member;
+            }
+          }
+        }
+          if (array_key_exists('Secretary', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Secretary'], $p);
+          } 
+          if (array_key_exists('Executive Assistant', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Executive Assistant'], $p);
+          }
+          if (array_key_exists('Coordinator', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Coordinator'], $p);
+          }
+          if (array_key_exists('Manager', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Manager'], $p);
+          }
+          if (array_key_exists('Counsel', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Counsel'], $p);
+          }      
+          if (array_key_exists('Director', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Director'], $p);
+          }
+          if (array_key_exists('Management Officer', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Management Officer'], $p);
+          }          
+          if (array_key_exists('Chief', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Chief'], $p);
+          }
+          if (array_key_exists('Superintendent', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Superintendent'], $p);
+          }
+
+      return $p;
     }
 
     /**
@@ -129,7 +182,6 @@ class Department
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
         return $this;
     }
 

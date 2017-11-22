@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width">
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}{{department.name}}{% endblock %} - HCPSS</title>
     <link rel="stylesheet" type='text/css'
       href="http://s3.amazonaws.com/hcpss.web.site/images/normalize.css">
     <link rel="stylesheet" type='text/css'
@@ -18,34 +18,22 @@
 <div class="header group">
   <div class="header-inner group" itemscope="" itemtype="http://schema.org/Organization">
     <div class="logomark">
-      <a href="/"><img itemprop="logo" class="logo shadow-smaller" src="http://s3.amazonaws.com/hcpss.web.site/images/hcpss-logo-outlined.png" height="60" width="60" alt="">
+      <a href="/"><img itemprop="logo" class="logo shadow-smaller" src="https://s3.amazonaws.com/hcpss.web.site/images/hcpss-logo-outlined.png" height="60" width="60" alt="">
       <h1>Howard County Public School System</h1></a>
     </div>
     <div class="header-search">
-      <form action="http://search.hcpss.org/search" method="get" id="search-form">
-        <input type="hidden" name="site" value="www_main_site">
-        <input type="hidden" name="proxystylesheet" value="hcpss_main_frontend">
-        <input type="hidden" name="client" value="hcpss_main_frontend">
-        <input type="hidden" name="access" value="p">
-        <input type="hidden" name="ie" value="UTF-8">
-        <input type="hidden" name="oe" value="UTF-8">
-        <input type="hidden" name="filter" value="0">
-        <input type="hidden" name="numgm" value="5">
-        <input type="hidden" name="btnG" value="Search">
-        <input type="hidden" name="output" value="xml_no_dtd">
-        <input type="hidden" name="sort" value="date:D:L:d1">
-        <label style="display: none;" for="q">Search:</label>
-        <input type="text" id="q" name="q" maxlength="255">
+      <form action="http://www.hcpss.org/" method="get" id="search-form">
+        <label style="position:absolute;left:-9999px;" for="s">Search:</label>
+        <input type="text" id="s" name="s" maxlength="255">
         <button style="background-color: #FECC6A;color: black;border-radius: 10px;" type="submit">Search</button>
       </form>
     </div>
   </div>
 
-<!--googleoff: index-->
 
-<nav class="nav-container" role="navigation" style="margin-top:0;">
-<ul class="nav-main">
-</ul>
+
+<nav class="nav-container" role="navigation">
+
 </nav>
 
 <input type="checkbox" id="nav-sidebartoggler" autocomplete="off">
@@ -54,33 +42,16 @@
     <label class="toggle" for="nav-sidebartoggler" tabindex="0"><span class="btn__nav-toggle"> <i class="fa fa-bars" aria-hidden="true"></i> Main Menu</span></label>
 </div>
 
-  <div class="nav-main__mobile">
-    <div class="nav-main__mobile-close">
-
-    </div>
-  <section class="nav-main__mobile-container">
-
-  <div id="accordion-mobile">
-    
-  </div>
-
-  </section>
-
-  </div>
-
-<!--googleon: index-->
 </div>
-    <div class="container page group">
-      <main class="main">
-        <div class="hero-heading">
-            <h1>{% block heading %}Search our Staff Directory{% endblock %}</h1>
-        </div>
 
-        {% block body %}{% endblock %}
+  <div class="container page group">
+    <main class="main">
 
-      </main>
+      {% block body %}{% endblock %}
 
-    </div>
+    </main>
+  </div>
+
 <div class="footer group">
 <div class="footer-inner group">
 <div class="footer-directions">

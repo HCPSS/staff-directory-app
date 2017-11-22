@@ -3,7 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Department
  *
@@ -48,11 +48,12 @@ class Department
     private $slug;
 
     /**
-     * @var string
+     * @var text
      *
      * @ORM\Column(name="description", type="text")
      */
     private $description;
+
 
     /**
      * Get id
@@ -113,7 +114,7 @@ class Department
     /**
      * Get staffMember
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return string 
      */
     public function getStaffMember()
     {
@@ -129,7 +130,6 @@ class Department
     public function setSlug($slug)
     {
         $this->slug = $slug;
-
         return $this;
     }
 

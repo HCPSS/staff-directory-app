@@ -1,12 +1,19 @@
-    <div class="dir-search__entry">
-      <div class="dir-search__entry--name">
-          <h3>{% if 'Principal' in person.position and 'Assistant' not in person.position or 'Director' in person.position %}<i class="fa fa-star" aria-hidden="true"></i> {% endif %} <strong>{{ person.name }}</strong></h3>
-      </div>
-      <div class="dir-search__entry--contact">
-          <p><a href="{{ path('department', { 'slug': person.department.slug }) }}">{{ person.department.name }}</a></p>
-          <p><strong>Position:</strong> {{ person.position }}</p>
-          {% if person.email != null %}<p><strong>Email:</strong> {{ person.email }}</p>{% endif %}
-          {% if person.phone != null %}<p><strong>Phone:</strong> {{ person.phone }}</p>{% endif %}
-          <p><strong>Location:</strong> {{ person.location }}</p>
-      </div>
+  <div class="dir-search__entry">
+    <div class="dir-search__entry--name">
+      <h3><strong>{{ person.firstName }} {{ person.lastName }}</strong></h3>
     </div>
+    <div class="dir-search__entry--contact">
+      <p><a href={% if department.name is defined %}"./{{ person.department.slug }}"{% else %}"directory/department/{{ person.department.slug }}"{% endif %}>{{ person.department.name }}</a></p>
+
+      <p><strong>Position:</strong> {{ person.position }}</p>
+      {% if person.email != null %}
+        <p><strong>Email:</strong> <a href="mailto:{{ person.email }}">{{ person.email }}</a></p>
+      {% endif %}
+
+      {% if person.phone != null %}
+        <p><strong>Phone:</strong> {{ person.phone }}</p>
+      {% endif %}
+
+      <p><strong>Location:</strong> {% if 'Central Office' in person.location %}<a href="https://www.google.com/maps/place/Central+Office/@39.2355172,-76.8919338,17z/data=!4m13!1m7!3m6!1s0x89b7d8c895005849:0xfc6b82b5bd059712!2s10910+MD-108,+Ellicott+City,+MD+21042!3b1!8m2!3d39.2355131!4d-76.8897451!3m4!1s0x89b7df6181164985:0xc17695fc06d6946b!8m2!3d39.2356775!4d-76.8896285" target="_blank">{{ person.location }}{% elseif 'ARL' in person.location %}<a href="https://www.google.com/maps/place/Applications+and+Research+Laboratory/@39.235518,-76.8946194,17z/data=!3m1!4b1!4m5!3m4!1s0x89b7df61228ae963:0x7557056ab12cc472!8m2!3d39.2355139!4d-76.8924307" target="_blank">{{ person.location }}{% elseif 'Ascend' in person.location %}<a href="https://www.google.com/maps/place/Ascend+One+Building,+8930+Stanford+Blvd,+Columbia,+MD+21045/@39.1926943,-76.8194632,17z/data=!3m1!4b1!4m5!3m4!1s0x89b7e07c8acbcdb9:0xd8e061bfca312f0e!8m2!3d39.1927517!4d-76.8172236" target="_blank">{{ person.location }}{% elseif 'Cedar Lane' in person.location %}<a href="https://www.google.com/maps/place/HCPSS+County+Diagnostic+Center/@39.2229858,-76.8885628,17z/data=!4m12!1m6!3m5!1s0x89b7df6e85ee99a7:0xea63ab326260a4c5!2sColumbia+Athletic+Club!8m2!3d39.2229817!4d-76.8863741!3m4!1s0x89b7df6faca0b46f:0x990ae31631d6614b!8m2!3d39.2248897!4d-76.8861437" target="_blank">{{ person.location }}{% elseif 'Harriet Tubman' in person.location %}<a href="https://www.google.com/maps/place/8045+Harriet+Tubman+Ln,+Columbia,+MD+21044/@39.1863765,-76.8819556,17z/data=!3m1!4b1!4m5!3m4!1s0x89b7defa71dc103f:0xc8f5a7065019809b!8m2!3d39.1863724!4d-76.8797669" target="_blank">{{ person.location }}{% endif %} <i class="fa fa-map-marker" aria-hidden="true"></i></a></p>
+    </div>
+  </div>

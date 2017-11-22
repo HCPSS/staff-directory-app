@@ -15,10 +15,10 @@ class StaffRepository extends EntityRepository
 	public function findAllOrderedByName($searchTerm) {
 		return $this->getEntityManager()
     ->createQuery(
-        "SELECT staff 
-        FROM AppBundle:Staff staff 
-        WHERE staff.name LIKE '%$searchTerm%'
-        ORDER BY staff.name ASC"
+        "SELECT staff
+        FROM AppBundle:Staff staff
+        WHERE staff.firstName LIKE '%$searchTerm%' OR staff.lastName LIKE '%$searchTerm%'
+        ORDER BY staff.lastName ASC"
     )
     ->getResult();
 	}
@@ -26,10 +26,10 @@ class StaffRepository extends EntityRepository
 	public function findDeptOrderedByNameOnce() {
 		return $this->getEntityManager()
     ->createQuery(
-        'SELECT a.department 
-        FROM AppBundle:Staff a
-        GROUP BY a.department'
+        "SELECT a.name, a.slug
+        FROM AppBundle:Department a
+        GROUP BY a.name"
     )
     ->getResult();
-	}
+	}    
 }

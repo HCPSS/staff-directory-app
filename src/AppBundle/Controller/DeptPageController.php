@@ -14,18 +14,17 @@ class DeptPageController extends Controller
    */
   public function deptOptListAction()
   {
-
     $em = $this->getDoctrine()->getManager();
     $depts = $em->getRepository('AppBundle:Staff')
       ->findDeptOrderedByNameOnce();
 
     return $this->render(
       'default/dept-options.html.twig',
-      ['staff' => $depts]
+      ['department' => $depts]
     );
   }
   /**
-    * @Route("/directory/departments/{slug}", name="department")
+    * @Route("/directory/department/{slug}", name="department")
     */
   public function getDepartmentPageAction($slug)
   {
