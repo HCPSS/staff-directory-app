@@ -20,15 +20,6 @@
         <input type="text" name="given-name" id="search-field" placeholder="Search by first or last name">
         <button id="dir-submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
       </div>
-      <div class="contents dir-search__location--ddown">
-        <label class="smtb-mg"><span class="sm-rght-mg"><strong>Department</strong></span>
-        <select name="department">
-          <option value="null">-</option>
-            {% for title in staff %}
-              <option value="{{ title.name }}">{{ title.name }}</option>
-            {% endfor %}
-        </select>
-        </label> 
     </form>
     
   </section>
