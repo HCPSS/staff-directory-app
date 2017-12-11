@@ -21,7 +21,7 @@ class StaffRepository extends EntityRepository
         ORDER BY staff.lastName ASC"
     )
     ->getResult();
-	}
+	}   
 
 	public function findDeptOrderedByNameOnce() {
 		return $this->getEntityManager()
