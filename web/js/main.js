@@ -29,3 +29,61 @@ $("button#dir-submit").click(function(e){
       }
   });
 });
+
+$("button#dept-submit").click(function(e){
+  e.preventDefault();
+  var $path = "";
+  var $query = $("#search-field2").val();
+  var $render = $('#render-cards');
+  $.ajax({
+    type: "GET",
+    url: $path,
+    data: 'given-dept=' + $query,
+    dataType: "html",
+    success: function(response){
+      $render.hide().html(response).fadeIn();
+    },
+    complete: function() {
+      var $divAmt = $(".dir-search__entry").length;
+      var $resultCount = $("#result-output").hide().fadeIn();
+      var $helperText = "<p>Can't find who you're looking for? Try our full department listing or call our main phone line, <strong>410-313-6000</strong> during normal business hours, 8:30 a.m. - 4:30 p.m.</p>";
+        if ($query === "") {
+            $resultCount.html("<h3>Please enter in a full or partial department name</h3>");
+        } else if ($divAmt < 1) {
+            $resultCount.html("<h3>No results found</h3>" + $helperText);
+        } else {
+            if ($divAmt === 1){
+            $resultCount.html("<h3>" + $divAmt + " result found</h3>");
+            } else {
+            $resultCount.html("<h3>" + $divAmt + " results found</h3>");
+            }
+        };  
+      }
+  });
+});
+
+$("#dept-switch").click(function(e) {
+  e.preventDefault();
+  $(".dir-search__name--input").fadeOut("slow", function(){
+    var styles = {
+      position : "relative",
+      left : "0px"
+    }
+    $(".dir-search__dept--input").css( styles ).fadeIn("slow");
+  });
+  $('#render-cards').hide();
+  $('#result-output').hide();
+});
+
+$("#staff-switch").click(function(e) {
+  e.preventDefault();
+  $(".dir-search__dept--input").fadeOut("slow", function(){
+    var styles = {
+      position : "absolute",
+      left : "-9999px"
+    }
+    $(".dir-search__name--input").fadeIn("slow");
+  });
+  $('#render-cards').hide();
+  $('#result-output').hide();  
+});

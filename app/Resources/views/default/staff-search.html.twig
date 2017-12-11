@@ -19,16 +19,17 @@
          </label>
         <input type="text" name="given-name" id="search-field" placeholder="Search by first or last name">
         <button id="dir-submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+        <p style="font-size:18px;">Looking for a department? <a id="dept-switch" href="#">Search by department name</a></p>
       </div>
-      <div class="contents dir-search__location--ddown">
-        <label class="smtb-mg"><span class="sm-rght-mg"><strong>Department</strong></span>
-        <select name="department">
-          <option value="null">-</option>
-            {% for title in staff %}
-              <option value="{{ title.name }}">{{ title.name }}</option>
-            {% endfor %}
-        </select>
-        </label> 
+
+      <div class="contents dir-search__dept--input">
+        <label for="given-dept">
+          <span><strong>Department:</strong></span>
+        </label>
+        <input type="text" name="given-dept" id="search-field2" placeholder="Search by department name">
+        <button id="dept-submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>        
+        <p style="font-size:18px;">Looking for a staff member by first or last name? <a id="staff-switch" href="#">Search by staff name</a></p>
+      </div> 
     </form>
     
   </section>

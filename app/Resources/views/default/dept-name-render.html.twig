@@ -6,16 +6,8 @@
 	{{ parent() }}
 {% endif %}
 
-{% if staff != null %}
   {% for person in staff %}
-      {{ include('default/card-data.html.twig') }}
+      {{ include('default/dept-card-data.html.twig') }}
   {% endfor %}
-{% endif %}
-
-{% if dept != null %}
-  {% for depts in dept %}
-      {{ include('default/card-data.html.twig') }}
-  {% endfor %}
-{% endif %}
 
 {% endblock %}
