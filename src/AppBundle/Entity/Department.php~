@@ -54,6 +54,12 @@ class Department
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
 
     /**
      * Get id

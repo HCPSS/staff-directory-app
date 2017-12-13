@@ -54,6 +54,12 @@ class Department
      */
     private $description;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=255)
+     */
+    private $location;
 
     /**
      * Get id
@@ -130,7 +136,7 @@ class Department
     {
       $p = $this->getStaffMember()->toArray();
 
-        $callouts_names = array('Superintendent', 'Chief', 'Director', 'Management Officer', 'Program Head', 'Counsel', 'Coordinator', 'Manager', 'Executive Assistant', 'Secretary');
+        $callouts_names = array('Superintendent', 'Chief', 'Director', 'Management Officer', 'Program Head', 'General Counsel', 'Coordinator', 'Manager', 'Executive Assistant', 'Secretary');
 
         $callouts_pos = array();
 
@@ -154,8 +160,8 @@ class Department
           if (array_key_exists('Manager', $callouts_pos)) {
             $p = array_merge($callouts_pos['Manager'], $p);
           }
-          if (array_key_exists('Counsel', $callouts_pos)) {
-            $p = array_merge($callouts_pos['Counsel'], $p);
+          if (array_key_exists('General Counsel', $callouts_pos)) {
+            $p = array_merge($callouts_pos['General Counsel'], $p);
           }
           if (array_key_exists('Program Head', $callouts_pos)) {
             $p = array_merge($callouts_pos['Program Head'], $p);
@@ -219,5 +225,28 @@ class Department
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set location
+     *
+     * @param string $location
+     * @return Department
+     */
+    public function setLocation($location)
+    {
+        $this->location = $location;
+
+        return $this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return string 
+     */
+    public function getLocation()
+    {
+        return $this->location;
     }
 }
