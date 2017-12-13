@@ -15,7 +15,7 @@ class DepartmentRepository extends EntityRepository
     public function findByName($searchDeptTerm) {
         return $this->getEntityManager()
     ->createQuery(
-        "SELECT b.name
+        "SELECT b
         FROM AppBundle:Department b
         WHERE b.name LIKE '%$searchDeptTerm%'
         ORDER BY b.name ASC"
