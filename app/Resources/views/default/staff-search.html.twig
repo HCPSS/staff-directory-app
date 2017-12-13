@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}HCPSS Staff Directory{% endblock %}
+{% block title %}HCPSS Staff Directory - BETA{% endblock %}
 
 {% block body %}
 
 <div class="hero-heading">
-<h1>Search our Staff Directory</h1>
+<h1>Search our Staff Directory - <span style="color:green;">BETA</span></h1>
 </div>
 
   <section class="contents">
@@ -14,23 +14,19 @@
 
     <form class="contents dir-search smtb-mg" method="GET">
       <div class="contents dir-search__name--input">
-         <label for="given-name">
-          <span><strong>Staff Name:</strong></span>
-         </label>
-        <input type="text" name="given-name" id="search-field" placeholder="Search by first or last name">
-        <button id="dir-submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
-        <p style="font-size:18px;">Looking for a department? <a id="dept-switch" href="#">Search by department name</a></p>
-      </div>
-
-      <div class="contents dir-search__dept--input">
-        <label for="given-dept">
-          <span><strong>Department:</strong></span>
+        <label class="search-toggle-label" for="search-toggle"><strong>Search for:</strong></label>
+          <select id="search-toggle" name="search-toggle">
+            <option value="staff">Staff</option>
+            <option value="dept">Department</option>
+          </select>        
+        <label for="search">
+          <span><strong>Search:</strong></span>
         </label>
-        <input type="text" name="given-dept" id="search-field2" placeholder="Search by department name">
-        <button id="dept-submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>        
-        <p style="font-size:18px;">Looking for a staff member by first or last name? <a id="staff-switch" href="#">Search by staff name</a></p>
-      </div> 
 
+        <input type="text" name="search" id="search-field" placeholder="Search our Directory">
+
+        <button id="submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+      </div>
     </form>
     
   </section>
