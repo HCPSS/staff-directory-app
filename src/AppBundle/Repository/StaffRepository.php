@@ -13,14 +13,19 @@ use Doctrine\ORM\EntityRepository;
 class StaffRepository extends EntityRepository
 {
 	public function findAllOrderedByName($searchTerm) {
-		return $this->getEntityManager()
+		$staff = $this->getEntityManager()
     ->createQuery(
         "SELECT staff
         FROM AppBundle:Staff staff
-        WHERE staff.firstName LIKE '%$searchTerm%' OR staff.lastName LIKE '%$searchTerm%'
+        WHERE CONCAT(staff.firstName, ' ', staff.lastName) LIKE '%$searchTerm%'
         ORDER BY staff.lastName ASC"
     )
     ->getResult();
+        //$a = array();
+        //foreach ($staff as $staff_member) {
+            //$a[$staff_member->getEmail()] = $staff_member;
+        //}
+        return $staff;
 	}   
 
 	public function findDeptOrderedByNameOnce() {

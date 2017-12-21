@@ -37,6 +37,27 @@ class StaffCardRenderController extends Controller
 
     $isAjax = $request->isXmlHttpRequest();
 
+    if ($name != null) {
+      $b = array();
+      foreach ($name as $staff) {
+
+        if (in_array($staff->getEmail(), array_keys($b))) {
+          $b[$staff->getEmail()]['departments'][] = $staff->getDepartment();
+        } else {
+          $b[$staff->getEmail()] = array(
+            'firstName'=>$staff->getFirstName(),
+            'lastName'=>$staff->getLastName(),
+            'position'=>$staff->getPosition(),
+            'email'=>$staff->getEmail(),
+            'phone'=>$staff->getPhone(),
+            'location'=>$staff->getLocation(),
+            'departments'=>array($staff->getDepartment()),
+          );
+        }
+      }
+      $name = $b;
+    }
+
     return $this->render(
       'default/staff-name-render.html.twig', 
         ['staff'=>$name, 'dept'=>$deptName, 'isAjax'=>$isAjax]       
