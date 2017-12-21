@@ -13,13 +13,32 @@ use Doctrine\ORM\EntityRepository;
 class DepartmentRepository extends EntityRepository
 {
     public function findByName($searchDeptTerm) {
-        return $this->getEntityManager()
-    ->createQuery(
-        "SELECT b
-        FROM AppBundle:Department b
-        WHERE b.name LIKE '%$searchDeptTerm%'
-        ORDER BY b.name ASC"
-    )
-    ->getResult();
-    } 
+    
+    $departments = $this->searchDepartment($searchDeptTerm);
+
+    if (substr($searchDeptTerm, -1) === 's') {
+        $newSearchDeptTerm = substr($searchDeptTerm, 0, strlen($searchDeptTerm)-1);
+
+        $newDepartments = $this->searchDepartment($newSearchDeptTerm);
+
+        $departments = $departments + $newDepartments;
+      }
+      return $departments;
+    }
+
+    private function searchDepartment($term) {
+      $departments = $this->getEntityManager()
+        ->createQuery(
+            "SELECT b
+            FROM AppBundle:Department b
+            WHERE b.name LIKE '%$term%'
+            ORDER BY b.name ASC"
+        )
+        ->getResult();
+        $printDepts = array();
+        foreach ($departments as $dept) {
+          $printDepts[$dept->getId()] = $dept;
+        }
+        return $printDepts;
+    }
 }
