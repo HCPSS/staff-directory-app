@@ -136,7 +136,7 @@ class Department
     {
       $p = $this->getStaffMember()->toArray();
 
-        $callouts_names = array('Superintendent', 'Chief', 'Director', 'Management Officer', 'Program Head', 'General Counsel', 'Coordinator', 'Manager', 'Executive Assistant', 'Secretary');
+        $callouts_names = array('Superintendent', 'Chief', 'Director', 'Management Officer', 'General Counsel', 'Coordinator', 'Instructional Facilitator', 'Program Head', 'Manager', 'Administrator', 'Executive Assistant', 'Secretary');
 
         $callouts_pos = array();
 
@@ -154,6 +154,15 @@ class Department
           if (array_key_exists('Executive Assistant', $callouts_pos)) {
             $p = array_merge($callouts_pos['Executive Assistant'], $p);
           }
+          if (array_key_exists('Administrator', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Administrator'], $p);
+          }
+          if (array_key_exists('Program Head', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Program Head'], $p);
+          }
+          if (array_key_exists('Instructional Facilitator', $callouts_pos)) {
+            $p = array_merge($callouts_pos['Instructional Facilitator'], $p);
+          }          
           if (array_key_exists('Coordinator', $callouts_pos)) {
             $p = array_merge($callouts_pos['Coordinator'], $p);
           }
@@ -162,10 +171,7 @@ class Department
           }
           if (array_key_exists('General Counsel', $callouts_pos)) {
             $p = array_merge($callouts_pos['General Counsel'], $p);
-          }
-          if (array_key_exists('Program Head', $callouts_pos)) {
-            $p = array_merge($callouts_pos['Program Head'], $p);
-          }              
+          }             
           if (array_key_exists('Management Officer', $callouts_pos)) {
             $p = array_merge($callouts_pos['Management Officer'], $p);
           }           
