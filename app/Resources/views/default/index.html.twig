@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width">
-    <title>{% block title %}{{department.name}}{% endblock %} - HCPSS</title>
+    <title>{% block title %}{% if department.name is defined %}{{department.name}}{% endif %}{% endblock %} - HCPSS</title>
     <link rel="stylesheet" type='text/css'
       href="http://s3.amazonaws.com/hcpss.web.site/images/normalize.css">
     <link rel="stylesheet" type='text/css'
