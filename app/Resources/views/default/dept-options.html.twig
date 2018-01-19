@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'default/index.html.twig' %}
 
 {% block title %}HCPSS Staff Departments - Staff Directory{% endblock %}
 
@@ -8,7 +8,7 @@
 		<h1>HCPSS Departments</h1>
 	</div>
 
-	<p><a href="/directory">&larr; Return to search</a></p>
+	<p><a href="/">&larr; Return to search</a></p>
 
   <ul>
     {% for dept in department %}

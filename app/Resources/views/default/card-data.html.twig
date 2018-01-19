@@ -5,7 +5,7 @@
       <div class="dir-search__entry--contact">
         <p>Main phone: 410-313-6600</p>
         {{ include('default/location-data.html.twig', {'a': depts}) }}
-        <p><a href="directory/department/{{ depts.slug }}">View all department staff</a></p>
+        <p><a href="department/{{ depts.slug }}">View all department staff</a></p>
       </div>
     </div>
   </div>
@@ -19,7 +19,7 @@
     <div class="dir-search__entry--contact">
 
       {% for department in person.departments %}
-        <p><a href="directory/department/{{ department.slug }}">{{ department.name }}</a></p>
+        <p><a href="department/{{ department.slug }}">{{ department.name }}</a></p>
       {% endfor %}
 
       <p><strong>Position:</strong> {{ person.position }}</p>
