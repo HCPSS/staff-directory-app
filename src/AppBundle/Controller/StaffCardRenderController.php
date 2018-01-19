@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 class StaffCardRenderController extends Controller
 {
   /**
-   * @Route("/directory")
+   * @Route("/")
    */
   public function getDepartmentStaffAction(request $request)
   {

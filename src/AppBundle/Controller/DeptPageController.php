@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DeptPageController extends Controller
 {
   /**
-   * @Route("/directory/departments")
+   * @Route("departments")
    */
   public function deptOptListAction()
   {
@@ -24,7 +24,7 @@ class DeptPageController extends Controller
     );
   }
   /**
-    * @Route("/directory/department/{slug}", name="department")
+    * @Route("department/{slug}", name="department")
     */
   public function getDepartmentPageAction($slug)
   {
