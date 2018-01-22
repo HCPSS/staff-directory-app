@@ -15,6 +15,12 @@
 </div>
 </section>
 
+<section class="contents">
+{% autoescape false %}	
+	<p>{{ department.topPageDesc }}</p>
+{% endautoescape %}
+</section>
+
 <div id="render-cards">
 {% for person in department.staffType %}
     {{ include('default/card-data-search-page.html.twig') }}
