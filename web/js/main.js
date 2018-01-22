@@ -39,7 +39,7 @@ $("button#submit").click(function(e){
         } else {
           $mod = "who";
         }
-        $resultCount.html("<h3>No results found</h3>" + "<p>Can't find " + $mod + " you're looking for? Try our <a href='/directory/departments'>full department listing</a> or call our main phone line, <strong>410-313-6000</strong> during normal business hours, 8:30 a.m. - 4:30 p.m.</p>");
+        $resultCount.html("<h3>No results found</h3>" + "<p>Can't find " + $mod + " you're looking for? Try our <a href='departments'>full department listing</a> or call our main phone line, <strong>410-313-6000</strong> during normal business hours, 8:30 a.m. - 4:30 p.m.</p>");
       } else {
         if ($divAmt === 1){
           $resultCount.html("<h3>" + $divAmt + " result found</h3>");
