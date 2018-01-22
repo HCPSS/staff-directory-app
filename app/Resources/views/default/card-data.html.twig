@@ -3,7 +3,7 @@
     <div class="dir-search__entry--name">
         <h3><strong>{{ depts.name }}</strong></h3>
       <div class="dir-search__entry--contact">
-        <p>Main phone: 410-313-6600</p>
+        <p>Main phone: {% if depts.phone != null %}{{ depts.phone }} {% else %} 410-313-6600 {% endif %}</p>
         {{ include('default/location-data.html.twig', {'a': depts}) }}
         <p><a href="department/{{ depts.slug }}">View all department staff</a></p>
       </div>
