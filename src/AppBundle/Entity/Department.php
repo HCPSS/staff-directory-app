@@ -62,6 +62,20 @@ class Department
     private $location;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    private $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="topPageDesc", type="string", length=255)
+     */
+    private $topPageDesc;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -254,5 +268,51 @@ class Department
     public function getLocation()
     {
         return $this->location;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Department
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set topPageDesc
+     *
+     * @param string $topPageDesc
+     * @return Department
+     */
+    public function setTopPageDesc($topPageDesc)
+    {
+        $this->topPageDesc = $topPageDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get topPageDesc
+     *
+     * @return string 
+     */
+    public function getTopPageDesc()
+    {
+        return $this->topPageDesc;
     }
 }
