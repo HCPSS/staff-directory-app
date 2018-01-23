@@ -292,4 +292,27 @@ class Department
     {
         return $this->phone;
     }
+
+    /**
+     * Set topPageDesc
+     *
+     * @param string $topPageDesc
+     * @return Department
+     */
+    public function setTopPageDesc($topPageDesc)
+    {
+        $this->topPageDesc = $topPageDesc;
+
+        return $this;
+    }
+
+    /**
+     * Get topPageDesc
+     *
+     * @return string 
+     */
+    public function getTopPageDesc()
+    {
+        return $this->topPageDesc;
+    }
 }
