@@ -154,14 +154,20 @@ class Department
 
         $callouts_pos = array();
 
+        $ids = [];
+
         foreach ($p as $index => $member) {
           foreach ($callouts_names as $names) {
             if (strpos($member->getPosition(), $names) !== false) {
-              unset($p[$index]);
-              $callouts_pos[$names][]=$member;
+                if (!in_array($member->getId(), $ids)) {
+                  $callouts_pos[$names][]=$member;
+                  $ids[] = $member->getId();
+                  unset($p[$index]);
+                }
             }
           }
         }
+
           if (array_key_exists('Secretary', $callouts_pos)) {
             $p = array_merge($callouts_pos['Secretary'], $p);
           } 
