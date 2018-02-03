@@ -154,16 +154,12 @@ class Department
 
         $callouts_pos = array();
 
-        $ids = [];
-
         foreach ($p as $index => $member) {
           foreach ($callouts_names as $names) {
             if (strpos($member->getPosition(), $names) !== false) {
-                if (!in_array($member->getId(), $ids)) {
-                  $callouts_pos[$names][]=$member;
-                  $ids[] = $member->getId();
-                  unset($p[$index]);
-                }
+                $callouts_pos[$names][]=$member;
+                unset($p[$index]);
+                break; // Stop looking for positions for this member.
             }
           }
         }
