@@ -36,5 +36,16 @@ class StaffRepository extends EntityRepository
         GROUP BY a.name"
     )
     ->getResult();
-	}    
+	}
+
+    public function findStaffPhone($searchPhone) {
+        return $this->getEntityManager()
+    ->createQuery(
+        "SELECT staff
+        FROM AppBundle:Staff staff
+        WHERE staff.phone LIKE '%$searchPhone%'
+        ORDER BY staff.lastName ASC"
+    )
+    ->getResult();
+    }     
 }

@@ -11,8 +11,10 @@ $("button#submit").click(function(e){
 
   if ($selected === "dept") {
     $q_string = "given-dept=";
-  } else {
+  } else if ($selected === "staff") {
     $q_string = "given-name=";
+  } else {
+    $q_string = "given-phone=";
   }
 
   $.ajax({

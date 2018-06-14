@@ -35,3 +35,28 @@
     </div>
   </div>
 {% endif %}
+
+{% if phone != null %}
+  <div class="dir-search__entry">
+    <div class="dir-search__entry--name">
+      <h3><strong>{{ person.firstName }} {{ person.lastName }}</strong></h3>
+    </div>
+    <div class="dir-search__entry--contact">
+
+      {% for department in person.departments %}
+        <p><a href="department/{{ department.slug }}">{{ department.name }}</a></p>
+      {% endfor %}
+
+      <p><strong>Position:</strong> {{ person.position }}</p>
+      {% if person.email != null %}
+        <p><strong>Email:</strong> <a href="mailto:{{ person.email }}">{{ person.email }}</a></p>
+      {% endif %}
+
+      {% if person.phone != null %}
+        <p><strong>Phone:</strong> {{ person.phone }}</p>
+      {% endif %}
+
+      {{ include('default/location-data.html.twig', {'a': person}) }}
+    </div>
+  </div>
+{% endif %}
