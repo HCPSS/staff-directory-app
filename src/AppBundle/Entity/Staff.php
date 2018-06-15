@@ -67,6 +67,13 @@ class Staff
     /**
      * @var string
      *
+     * @ORM\Column(name="phone_plain", type="string", length=255)
+     */
+    private $phone_plain;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="email", type="string", length=255)
      */
     private $email;
@@ -202,6 +209,29 @@ class Staff
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone_plain
+     * @return Staff
+     */
+    public function setPhone_plain($phone_plain)
+    {
+        $this->phone_plain = $phone_plain;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone_plain()
+    {
+        return $this->phone_plain;
     }
 
     /**
