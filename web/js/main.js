@@ -31,9 +31,11 @@ $("button#submit").click(function(e){
 
       if ($query === "") {
         if ($q_string === "given-dept=") {
-          $resultCount.html("<h3>Please enter in a full or partial department name</h3>");
+          $resultCount.html("<h3>Please enter in a full or partial department name.</h3>");
+        } else if ($q_string === "given-name=") {
+          $resultCount.html("<h3>Please enter in a full or partial staff name.</h3>"); 
         } else {
-          $resultCount.html("<h3>Please enter in a full or partial staff name</h3>"); 
+          $resultCount.html("<h3>Please enter in a full or partial phone number.</h3>");
         }
       } else if ($divAmt < 1) {
         if ($q_string === "given-dept=") {
