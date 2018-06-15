@@ -43,7 +43,7 @@ class StaffRepository extends EntityRepository
     ->createQuery(
         "SELECT staff
         FROM AppBundle:Staff staff
-        WHERE staff.phone LIKE '%$searchPhone%'
+        WHERE (staff.phone LIKE '%$searchPhone%' OR staff.phone_plain LIKE '%$searchPhone%')
         ORDER BY staff.lastName ASC"
     )
     ->getResult();
