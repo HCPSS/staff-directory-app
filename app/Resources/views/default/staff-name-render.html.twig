@@ -10,15 +10,11 @@
   {% for person in staff %}
       {{ include('default/card-data.html.twig') }}
   {% endfor %}
-{% endif %}
-
-{% if phone != null %} 
+{% elseif phone != null %} 
   {% for person in phone %}
       {{ include('default/card-data.html.twig') }}
   {% endfor %}
-{% endif %}
-
-{% if dept != null %}
+{% else %}
   {% for depts in dept %}
       {{ include('default/card-data.html.twig') }}
   {% endfor %}
