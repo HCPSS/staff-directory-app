@@ -12,4 +12,7 @@ Any manual changes to the Staff.php or Departments.php file (which modifies the 
 
 #### SQL query for moving phone data
 
-If needed again, the SQL to move all the phone data from one column to another with the hyphens dropped is `UPDATE `staff` SET `phone_plain` = REPLACE(phone, '-', '')`
+If needed again, the SQL to move all the phone data from one column to another with the hyphens dropped is 
+``` sql
+`UPDATE `staff` SET `phone_plain` = REPLACE(phone, '-', '')`
+```
