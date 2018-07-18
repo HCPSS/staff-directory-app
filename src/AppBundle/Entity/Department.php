@@ -189,18 +189,18 @@ class Department
         if (array_key_exists('Executive Director on Assignment', $callouts_pos)) {
           $p = array_merge($callouts_pos['Executive Director on Assignment'], $p);
         }
-        if (array_key_exists('Director, Human Capital Management Systems', $callouts_pos)) {
-          $p = array_merge($callouts_pos['Director, Human Capital Management Systems'], $p);
-        }
         if (array_key_exists('Assistant Manager', $callouts_pos)) {
           $p = array_merge($callouts_pos['Assistant Manager'], $p);
-        }        
-        if (array_key_exists('Manager', $callouts_pos)) {
-          $p = array_merge($callouts_pos['Manager'], $p);
-        }
+        } 
+        if (array_key_exists('Director, Human Capital Management Systems', $callouts_pos)) {
+          $p = array_merge($callouts_pos['Director, Human Capital Management Systems'], $p);
+        }       
         if (array_key_exists('Manager - IT Partnerships', $callouts_pos)) {
           $p = array_merge($callouts_pos['Manager - IT Partnerships'], $p);
-        }        
+        }
+        if (array_key_exists('Manager', $callouts_pos)) {
+          $p = array_merge($callouts_pos['Manager'], $p);
+        }          
         if (array_key_exists('General Counsel', $callouts_pos)) {
           $p = array_merge($callouts_pos['General Counsel'], $p);
         }
