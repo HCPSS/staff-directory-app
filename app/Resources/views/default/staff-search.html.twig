@@ -4,7 +4,7 @@
 
 {% block body %}
 
-<div class="hero-heading">
+<div class="hero-heading directory-heading">
 <h1>Department of Education Staff Directory</h1>
 </div>
 
@@ -19,19 +19,26 @@
 
     <form class="contents dir-search smtb-mg" method="GET">
       <div class="contents dir-search__name--input">
-        <label class="search-toggle-label" for="search-toggle"><strong>Search for:</strong></label>
-          <select id="search-toggle" name="search-toggle">
-            <option value="staff">Staff</option>
-            <option value="dept">Department</option>
-            <option value="phone">Phone</option>
-          </select>        
-        <label for="search">
-          <span><strong>Search:</strong></span>
-        </label>
+          <div class="search-field">
+              <label class="search-toggle-label" for="search-toggle"><strong>Search for:</strong></label>
+          </div>
+          <div class="search-field" style="margin-right:1em;">    
+                <select id="search-toggle" name="search-toggle">
+                  <option value="staff">Staff</option>
+                  <option value="dept">Department</option>
+                  <option value="phone">Phone</option>
+                </select>
+          </div>
+          <div class="search-field">
+              <label for="search">
+                <span><strong>Search:</strong></span>
+              </label>
+          </div>
+              <input type="text" name="search" id="search-field" placeholder="Search our Directory">
 
-        <input type="text" name="search" id="search-field" placeholder="Search our Directory">
-
-        <button id="submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+          <div class="search-field">
+              <button id="submit" style="height:30px;background-color:#FECC6A;color:black;border-radius:5px;"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
+          </div>
       </div>
     </form>
     
