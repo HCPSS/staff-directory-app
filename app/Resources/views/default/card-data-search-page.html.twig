@@ -1,7 +1,8 @@
   <div class="dir-search__entry" 
   {% if 'Superintendent' in person.position %}style="background-color:#f2f2f2"
   {% elseif 'Chief' in person.position %}style="background-color:#f2f2f2"
-  {% elseif 'Director' in person.position %}style="background-color:#f2f2f2"
+  {% elseif 'Acting Performance, Equity, and Community Response Director' in person.position %}style="background-color:#ffffff"
+  {% elseif 'Director' in person.position %}style="background-color:#f2f2f2"    
   {% elseif 'Data Coordinator' in person.position %}style="background-color:#FFFFF"
   {% elseif 'Strategic Alignment and Analytics Coordinator' in person.position %}style="background-color:#FFFFF"    
   {% elseif 'Process Development Coordinator' in person.position %}style="background-color:#FFFFF"
@@ -24,7 +25,7 @@
   {% elseif 'Management Officer' in person.position %}style="background-color:#f2f2f2"
   {% elseif 'Medicaid/Autism Waiver - Program Head' in person.position %}style="background-color:#FFFFFF"    
   {% elseif 'Program Head' in person.position %}style="background-color:#f2f2f2"
-  {% elseif 'Instructional Facilitator' in person.position %}style="background-color:#f2f2f2"
+  {% elseif 'Instructional Facilitator' in person.position %}style="background-color:#f2f2f2"    
   {% endif %}>
     <div class="dir-search__entry--name">
       <h3><strong>{{ person.firstName }} {{ person.lastName }}</strong></h3>
