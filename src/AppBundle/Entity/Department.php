@@ -153,15 +153,19 @@ class Department
         $callouts_names = array('Superintendent', 'Chief', 'Executive Director on Assignment', 'Director, Human Capital Management Systems', 'Executive Director of Program Innovation and Student Well-Being', 'Director','Management Officer', 'General Counsel', 'Coordinator', 'Instructional Facilitator', 'Program Head', 'Manager - IT Partnerships', 'Manager Information Technology Business Services', 'Manager', 'Assistant Manager', 'Administrator', 'Executive Assistant', 'Secretary');
 
         $callouts_pos = array();
-
+        // re-builds the array with everything from callouts_names first
         $ids = [];
+        // becomes references to individual staff IDs from database
 
         foreach ($p as $index => $member) {
+          // loops through and looks for if position title is on department page, takes values from $callouts_names array
           foreach ($callouts_names as $names) {
             if (strpos($member->getPosition(), $names) !== false) {
+                // if, for instance, 'secretary' comes back from getPosition() then below block will not run. Block will run on titles not found on page and updates array $callout_pos with titles only found on page.
                 if (!in_array($member->getId(), $ids)) {
                   $callouts_pos[$names][]=$member;
                   $ids[] = $member->getId();
+                  // unset will remove any records matching titles in $callouts_pos array not found on page
                   unset($p[$index]);
                 }
             }
@@ -169,6 +173,7 @@ class Department
         }
 
         if (array_key_exists('Secretary', $callouts_pos)) {
+          // title will be in $callouts_pos, runs foreach statement above then merges position reference into new array if found on page. If statements run in order of hierarchy, $callouts_names is order that staff records should show up on page.
           $p = array_merge($callouts_pos['Secretary'], $p);
         } 
         if (array_key_exists('Executive Assistant', $callouts_pos)) {
