@@ -1,8 +1,10 @@
-# HCPSS Staff Directory Web Application
+# HCPSS Directory
 
-## Overview
+1. Set your variables
 
-This is written using the Symfony Standard Edition bundles. The overall intention is to create a simple search experience for site users to find staff members at HCPSS central and annex offices.
+```
+$ cp .env.dist .env
+```
 
 ## Updating Directory
 
@@ -24,11 +26,29 @@ All new departments will be added to the departments page in alphabetical order.
 
 ## Updating Schema
 
-Any manual changes to the Staff.php or Departments.php file (which modifies the database) can be applied using the `php app/console doctrine:schema:update --force` command. 
+```
+$ docker run --rm --volume $(pwd)/symfony:/app --env-file=$(pwd)/.env composer install
+```
 
 ### SQL query for moving phone data
 
-If needed again, the SQL to move all the phone data from one column to another with the hyphens dropped is 
-``` sql
-UPDATE `staff` SET `phone_plain` = REPLACE(phone, '-', '')
+```yml
+  ...
+  db:
+    image: mysql:5.5
+    container_name: directory_db
+    restart: always
+    volumes:
+      # - ./symfony.sql:/docker-entrypoint-initdb.d/symfony.sql
+      - ./.data:/var/lib/mysql
+    environment:
+    ...
 ```
+
+3. Launch
+
+```
+$ docker-compose up -d
+```
+
+4. Visit your site at http://localhost:9090
