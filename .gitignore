@@ -1,3 +1,6 @@
 /symfony.sql
 /.env
 /.data
+.buildpath
+.project
+.settings
