@@ -1,0 +1,23 @@
+{% extends 'card/card.html.twig' %}
+
+{% block card_name %}{{ person.firstName }} {{ person.lastName }}{% endblock %}
+
+{% block card_body %}
+    {% if person.department %}
+        <p>
+            <a href="department/{{ person.department.slug }}">
+                {{ person.department.name }}
+            </a>
+        </p>
+    {% endif %}
+
+    <p><strong>Position:</strong> {{ person.position }}</p>
+    {% if person.email %}
+        <p><strong>Email:</strong> 
+        <a href="mailto:{{ person.email }}">{{ person.email }}</a></p>
+    {% endif %}
+
+    {% if person.phone %}
+        <p><strong>Phone:</strong> {{ person.phone }}</p>
+    {% endif %}
+{% endblock %}

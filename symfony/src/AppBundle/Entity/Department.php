@@ -48,7 +48,7 @@ class Department
     private $slug;
 
     /**
-     * @var text
+     * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
@@ -75,10 +75,67 @@ class Department
      */
     private $topPageDesc;
 
+//     /**
+//      * @var ArrayCollection
+//      *
+//      * @ORM\OneToMany(targetEntity="Staff", mappedBy="department")
+//      */
+//     private $staff;
+
+//     public function __construct()
+//     {
+//         $this->staff = new ArrayCollection();
+//     }
+
+//     /**
+//      * Set staff.
+//      *
+//      * @param ArrayCollection $staff
+//      * @return Department
+//      */
+//     public function setStaff(ArrayCollection $staff) : Department
+//     {
+//         $this->staff = $staff;
+
+//         return $this;
+//     }
+
+//     /**
+//      * Add a staff member.
+//      *
+//      * @param Staff $staff
+//      * @return Department
+//      */
+//     public function addStaff(Staff $staff) : Department
+//     {
+//         $this->staff->add($staff);
+//     }
+
+//     /**
+//      * Remove staff.
+//      *
+//      * @param Staff $staff
+//      * @return Department
+//      */
+//     public function removeStaff(Staff $staff) : Department
+//     {
+//         $this->staff->removeElement($staff);
+//     }
+
+//     /**
+//      * Get staff.
+//      *
+//      * @return ArrayCollection
+//      */
+//     public function getStaff() : ArrayCollection
+//     {
+//         return $this->staff;
+//     }
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -101,7 +158,7 @@ class Department
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -134,7 +191,7 @@ class Department
     /**
      * Get staffMember
      *
-     * @return string 
+     * @return string
      */
     public function getStaffMember()
     {
@@ -144,7 +201,7 @@ class Department
     /**
      * Get staffMember
      *
-     * @return string 
+     * @return string
      */
     public function getStaffType()
     {
@@ -176,7 +233,7 @@ class Department
         if (array_key_exists('Secretary', $callouts_pos)) {
           // title will be in $callouts_pos, runs foreach statement above then merges position reference into new array if found on page. Statements run in order of hierarchy, $ids is order that staff records should show up on page.
           $p = array_merge($callouts_pos['Secretary'], $p);
-        } 
+        }
         if (array_key_exists('Executive Assistant', $callouts_pos)) {
           $p = array_merge($callouts_pos['Executive Assistant'], $p);
         }
@@ -191,7 +248,7 @@ class Department
         }
         if (array_key_exists('Manager, Bridges Program', $callouts_pos)) {
           $p = array_merge($callouts_pos['Manager, Bridges Program'], $p);
-        } 
+        }
         if (array_key_exists('Coordinator', $callouts_pos)) {
           $p = array_merge($callouts_pos['Coordinator'], $p);
         }
@@ -200,19 +257,19 @@ class Department
         }
         if (array_key_exists('Assistant Manager', $callouts_pos)) {
           $p = array_merge($callouts_pos['Assistant Manager'], $p);
-        } 
+        }
         if (array_key_exists('Director, Human Capital Management Systems', $callouts_pos)) {
           $p = array_merge($callouts_pos['Director, Human Capital Management Systems'], $p);
-        }       
+        }
         if (array_key_exists('Manager - IT Partnerships', $callouts_pos)) {
           $p = array_merge($callouts_pos['Manager - IT Partnerships'], $p);
         }
         if (array_key_exists('Manager Information Technology Business Services', $callouts_pos)) {
           $p = array_merge($callouts_pos['Manager Information Technology Business Services'], $p);
-        }          
+        }
         if (array_key_exists('Manager', $callouts_pos)) {
           $p = array_merge($callouts_pos['Manager'], $p);
-        }          
+        }
         if (array_key_exists('General Counsel', $callouts_pos)) {
           $p = array_merge($callouts_pos['General Counsel'], $p);
         }
@@ -250,7 +307,7 @@ class Department
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -273,7 +330,7 @@ class Department
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -296,7 +353,7 @@ class Department
     /**
      * Get location
      *
-     * @return string 
+     * @return string
      */
     public function getLocation()
     {
@@ -319,7 +376,7 @@ class Department
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -342,7 +399,7 @@ class Department
     /**
      * Get topPageDesc
      *
-     * @return string 
+     * @return string
      */
     public function getTopPageDesc()
     {

@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Staff
  *
@@ -36,7 +37,7 @@ class Staff
     private $firstName;
 
     /**
-     * @var text
+     * @var string
      *
      * @ORM\Column(name="position", type="text")
      */
@@ -56,7 +57,7 @@ class Staff
      */
 
     private $dept_id;
-     
+
     /**
      * @var string
      *
@@ -85,11 +86,18 @@ class Staff
      */
     private $location;
 
+//     /**
+//      * @var Department
+//      *
+//      * @ORM\ManyToOne(targetEntity="Department", inversedBy="staff")
+//      * @JoinColumn(name="dept_id", referencedColumnName="id")
+//      */
+//     private $department;
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -112,7 +120,7 @@ class Staff
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -135,7 +143,7 @@ class Staff
     /**
      * Get lastName
      *
-     * @return string 
+     * @return string
      */
     public function getLastName()
     {
@@ -158,7 +166,7 @@ class Staff
     /**
      * Get position
      *
-     * @return string 
+     * @return string
      */
     public function getPosition()
     {
@@ -181,7 +189,7 @@ class Staff
     /**
      * Get department
      *
-     * @return string 
+     * @return string
      */
     public function getDepartment()
     {
@@ -204,7 +212,7 @@ class Staff
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -227,7 +235,7 @@ class Staff
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone_plain()
     {
@@ -250,7 +258,7 @@ class Staff
     /**
      * Get email
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -273,7 +281,7 @@ class Staff
     /**
      * Get location
      *
-     * @return string 
+     * @return string
      */
     public function getLocation()
     {
@@ -296,7 +304,7 @@ class Staff
     /**
      * Get dept_id
      *
-     * @return integer 
+     * @return integer
      */
     public function getDeptId()
     {
