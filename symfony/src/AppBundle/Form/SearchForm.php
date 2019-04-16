@@ -29,9 +29,7 @@ class SearchForm extends AbstractType
             ->add('term', TextType::class, [
                 'attr' => ['placeholder' => 'Search our Directory'],
             ])
-            ->add('search', AnonymousSubmitType::class, [
-                'attr' => ['name' => ''],
-            ])
+            ->add('search', SubmitType::class)
         ;
     }
 
