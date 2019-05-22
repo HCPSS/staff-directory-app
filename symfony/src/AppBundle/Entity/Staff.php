@@ -321,7 +321,7 @@ class Staff
             'department' => $this->getDeptId(),
             'phone' => $this->getPhone(),
             'email' => $this->getEmail(),
-            'location' => $this->getEmail(),
+            'location' => $this->getLocation(),
         ];    
     }
 }
