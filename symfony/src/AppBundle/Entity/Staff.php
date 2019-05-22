@@ -310,4 +310,18 @@ class Staff
     {
         return $this->dept_id;
     }
+    
+    public function toArray() 
+    {
+        return [
+            'id' => $this->getId(),
+            'first_name' => $this->getFirstName(),
+            'last_name' => $this->getLastName(),
+            'position' => $this->getPosition(),
+            'department' => $this->getDeptId(),
+            'phone' => $this->getPhone(),
+            'email' => $this->getEmail(),
+            'location' => $this->getEmail(),
+        ];    
+    }
 }

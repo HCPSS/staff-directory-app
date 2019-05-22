@@ -16,7 +16,6 @@ COPY symfony/src             /var/www/symfony/src
 COPY symfony/composer.json   /var/www/symfony/composer.json
 COPY symfony/composer.lock   /var/www/symfony/composer.lock
 COPY symfony/web/css         /var/www/symfony/web/css
-COPY symfony/web/js          /var/www/symfony/web/js
 COPY symfony/web/.htaccess   /var/www/symfony/web/.htaccess
 COPY symfony/web/app.php     /var/www/symfony/web/app.php
 COPY symfony/web/favicon.ico /var/www/symfony/web/favicon.ico

@@ -405,4 +405,16 @@ class Department
     {
         return $this->topPageDesc;
     }
+    
+    public function toArray() : array
+    {
+        return [
+            'id'          => $this->getId(),
+            'name'        => $this->getName(),
+            'slug'        => $this->getSlug(),
+            'description' => $this->getDescription(),
+            'location'    => $this->getLocation(),
+            'phone'       => $this->getPhone(),
+        ];
+    }
 }

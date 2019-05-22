@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DeptPageController extends Controller
 {
-    /**
+   /**
     * @Route("departments")
     */
     public function deptOptListAction()
