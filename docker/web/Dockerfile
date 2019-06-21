@@ -8,6 +8,7 @@ ENV SYMFONY_SECRET=ThisIsNotASecret
 ENV SYMFONY_ENV=dev
 
 COPY docker/web/000-default.conf /etc/apache2/sites-available/000-default.conf
+COPY docker/web/php.ini /etc/php/7.2/apache2/php.ini
 
 # Symfony project structure.
 COPY symfony/bin                         /var/www/symfony/bin

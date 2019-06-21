@@ -10,4 +10,6 @@ done
 
 php bin/console doctrine:migrations:migrate -n
 
+chown -R www-data:www-data /var/www/symfony/var
+
 exec "$@"
