@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="hero-heading">
+		<h1>{{ department.name }}</h1>
+	</div>
+
+	<section class="contents">
+		<div class="col-left">
+			<p><a href="/">&larr; Return to search</a></p>
+		</div>
+		<div class="col-right">
+			<p style="float:right;"><a href="http://www.hcpss.org/f/aboutus/orgcharts.pdf">View the HCPSS Organizational Charts</a> <i class="fa fa-file-pdf-o" aria-hidden="true"></i></p>
+		</div>
+	</section>
+	
+	<div id="render-cards">
+    {% for person in department.staff %}
+        {{ include('card/person.html.twig', {'grey': person.weight < 0}) }}
+    {% endfor %}
+    </div>
+    
+    {% if department.relatedDepartments is not empty %}
+    	<p><strong>Related departments:</strong>
+    	{% for related in department.relatedDepartments %}
+    		{% if not loop.first %}|{% endif %}
+    		<a href="{{ path('department_show', {'slug': related.slug}) }}">{{ related.name }}</a>
+    	{% endfor %}
+    	</p>
+    {% endif %}
+{% endblock %}

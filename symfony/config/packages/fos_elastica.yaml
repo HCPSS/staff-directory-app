@@ -1,0 +1,31 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/Resources/doc/setup.md
+fos_elastica:
+    clients:
+        default:
+           url: https://search-hcpss-search-api-dnw2huoxad2mqgv54dqgb7pb2u.us-east-1.es.amazonaws.com
+    indexes:
+        app:
+            finder: ~
+            index_name: directory_%kernel.environment%
+            types:
+                staff:
+                    properties:
+                        firstName: ~
+                        lastName: ~
+                        displayName: ~
+                        email: ~
+                        position: ~
+                        phone: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\Staff
+                        provider: ~
+                        finder: ~
+                department:
+                    properties:
+                        name: ~
+                    persistence:
+                        driver: orm
+                        model: App\Entity\Department
+                        provider: ~
+                        finder: ~

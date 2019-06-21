@@ -1,4 +1,0 @@
-app:
-    resource: "@AppBundle/Controller/"
-    prefix: /
-    type:     annotation

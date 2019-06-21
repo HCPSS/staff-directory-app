@@ -3,12 +3,12 @@ version: '2'
 
 services:
   db:
-    image: mysql:5.5
+    image: mysql:5.7
     container_name: directory_db
     restart: always
-    volumes:
-      - ./symfony.sql:/docker-entrypoint-initdb.d/symfony.sql
-      - ./.data:/var/lib/mysql
+    #volumes:
+      #- ./symfony.sql:/docker-entrypoint-initdb.d/symfony.sql
+      #- ./.data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -16,20 +16,22 @@ services:
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
   web:
+    image: banderson/symfony
     image: reg.hcpss.org/directory/directory_web
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile
     container_name: directory_web
     restart: always
-    links:
-      - db:symfony_db
-    volumes:
-      - ./symfony:/var/www/symfony
+#    volumes:
+#      - ./symfony:/var/www/symfony
     environment:
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      SYMFONY_SECRET: ${SYMFONY_SECRET}
+      #DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
+      APP_SECRET: ${SYMFONY_SECRET}
+      APP_ENV: dev
+
+      #TRUSTED_HOSTS: "'^localhost|^directory\.hcpss\.org$'"
+      #MAILER_URL: null://localhost
+      DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
     ports:
       - 9090:80
