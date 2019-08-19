@@ -320,7 +320,7 @@ class Staff implements CardableInterface
     {
         $hierarchy = [
             'Superintendent' => -40,
-            'Cheif' => -35,
+            'Chief' => -35,
             'Director' => -30,
             'Manager' => -25,
             'General Counsel' => -20,
