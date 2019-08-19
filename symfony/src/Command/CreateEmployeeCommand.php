@@ -80,7 +80,7 @@ class CreateEmployeeCommand extends Command
             ->setLastName($employee['Last_Name']);
         
         if ($position = $input->getOption('position')) {
-            $staff->getPosition($position);
+            $staff->setPosition($position);
         } else {
             $staff->setPosition($employee['Primary_Position_Job_Description']);
         }
