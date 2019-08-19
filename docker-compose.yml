@@ -6,9 +6,9 @@ services:
     image: mysql:5.7
     container_name: directory_db
     restart: always
-    #volumes:
-      #- ./symfony.sql:/docker-entrypoint-initdb.d/symfony.sql
-      #- ./.data:/var/lib/mysql
+    volumes:
+      - ./symfony.sql:/docker-entrypoint-initdb.d/symfony.sql
+      - ./.data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -23,8 +23,8 @@ services:
       dockerfile: ./docker/web/Dockerfile
     container_name: directory_web
     restart: always
-#    volumes:
-#      - ./symfony:/var/www/symfony
+    volumes:
+      - ./symfony:/var/www/symfony
     environment:
       #DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE}
       APP_SECRET: ${SYMFONY_SECRET}

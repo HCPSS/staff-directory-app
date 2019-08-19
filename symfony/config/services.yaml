@@ -31,6 +31,11 @@ services:
         arguments:
             - '@eight_points_guzzle.client.directory_client'
             - '@eight_points_guzzle.client.sam_client'
+            
+    App\Command\CreateEmployeeCommand:
+        arguments:
+            - '@eight_points_guzzle.client.sam_client'
+            
 
     admin.staff:
         class: App\Admin\StaffAdmin
