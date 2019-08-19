@@ -319,13 +319,13 @@ class Staff implements CardableInterface
     public function getWeight() : int
     {
         $hierarchy = [
-            'Superintendent' => -10,
-            'Cheif' => -9,
-            'Director' => -8,
-            'Manager' => -7,
-            'General Counsel' => -8,
-            'Coordinator' => -7,
-            'Officer' => -6,
+            'Superintendent' => -40,
+            'Cheif' => -35,
+            'Director' => -30,
+            'Manager' => -25,
+            'General Counsel' => -20,
+            'Coordinator' => -15,
+            'Officer' => -10,
             'Instructional Facilitator' => -5,
             'Administrator' => 5,
         ];
