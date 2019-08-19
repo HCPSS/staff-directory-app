@@ -21,11 +21,12 @@ final class DepartmentAdmin extends AbstractAdmin
     {
         $formMapper
             ->add('name', TextType::class)
-            ->add('description', TextareaType::class)
-            ->add('phone', TextType::class)
+            ->add('description', TextareaType::class, ['required' => false])
+            ->add('phone', TextType::class, ['required' => false])
             ->add('location', ModelListType::class)
             ->add('relatedDepartments', ModelType::class, [
                 'multiple' => true,
+                'required' => false,
             ]);
     }
     
