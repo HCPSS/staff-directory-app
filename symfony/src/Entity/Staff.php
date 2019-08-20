@@ -342,6 +342,7 @@ class Staff implements CardableInterface
         $modifiers = [
             'Assistant' => 1,
             'Acting' => 1,
+            'Executive' => -1,
         ];
         
         foreach ($modifiers as $modifier => $value) {
