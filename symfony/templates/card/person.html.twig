@@ -1,6 +1,12 @@
 {% extends 'card/card.html.twig' %}
 
-{% block card_name %}{{ person.firstName }} {{ person.lastName }}{% endblock %}
+{% block card_name %}
+	{% if person.displayName %}
+		{{ person.displayName }}
+	{% else %}
+		{{ person.firstName }} {{ person.lastName }}
+	{% endif %}
+{% endblock %}
 
 {% block card_body %}
 	<p>
@@ -10,7 +16,7 @@
   	</p>
 
   	<p><strong>Position:</strong> {{ person.position }}</p>
-  	
+
     {% if person.email != null %}
     	<p><strong>Email:</strong> <a href="mailto:{{ person.email }}">{{ person.email }}</a></p>
     {% endif %}
@@ -22,7 +28,7 @@
     <p>
     	<strong>Location:</strong>
     	<a href="https://maps.google.com/?q={{ person.location.address|url_encode }}">
-    	    {{ person.location.name }} 
+    	    {{ person.location.name }}
     	    <i class="fa fa-map-marker" aria-hidden="true"></i>
     	</a>
     </p>
