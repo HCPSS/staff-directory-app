@@ -2,7 +2,8 @@
 fos_elastica:
     clients:
         default:
-           url: https://search-hcpss-search-api-dnw2huoxad2mqgv54dqgb7pb2u.us-east-1.es.amazonaws.com
+           #url: https://search-hcpss-search-api-dnw2huoxad2mqgv54dqgb7pb2u.us-east-1.es.amazonaws.com
+           url: http://search:9200
     indexes:
         app:
             finder: ~

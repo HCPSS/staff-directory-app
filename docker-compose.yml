@@ -14,9 +14,27 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-
+  search:
+    container_name: directory_search
+    image: elasticsearch:5
+    environment:
+      - discovery.type=single-node
+    #image: solr:8
+    #command: "solr-create -c mycore"
+    
+#    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.16
+#    environment:
+#      - cluster.name=docker-cluster
+#      - bootstrap.memory_lock=true
+##      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#    ulimits:
+#      memlock:
+#        soft: -1
+#        hard: -1
+#    mem_limit: 1g
+    #volumes:
+    #  - esdata1:/usr/share/elasticsearch/data
   web:
-    image: banderson/symfony
     image: reg.hcpss.org/directory/directory_web
     build:
       context: .
