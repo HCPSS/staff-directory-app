@@ -14,11 +14,11 @@ services:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-  search:
-    container_name: directory_search
-    image: elasticsearch:5
-    environment:
-      - discovery.type=single-node
+#  search:
+#    container_name: directory_search
+#    image: elasticsearch:5
+#    environment:
+#      - discovery.type=single-node
     #image: solr:8
     #command: "solr-create -c mycore"
     
