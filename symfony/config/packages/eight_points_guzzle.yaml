@@ -13,7 +13,7 @@ eight_points_guzzle:
                 verify: false
 
                 # timeout in seconds
-                timeout: 120
+                timeout: 100
 
                 # set to false to disable throwing exceptions on an HTTP protocol errors (4xx and 5xx responses)
                 http_errors: true
@@ -24,7 +24,7 @@ eight_points_guzzle:
                     User-Agent: "EightPointsGuzzleBundle/v7"
 
                 # Try not to overload the sam server.
-                delay: 200
+                #delay: 200
 
             # Find plugins here:
             # https://github.com/8p/EightPointsGuzzleBundle#known-and-supported-plugins

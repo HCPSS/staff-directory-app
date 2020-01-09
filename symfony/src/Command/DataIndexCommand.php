@@ -12,6 +12,7 @@ use Elastica\Type\Mapping;
 use Elastica\Document;
 use Elastica\Index;
 use GraphAware\Bolt\Record\RecordView;
+use App\Service\StateService;
 
 class DataIndexCommand extends Command
 {
@@ -27,10 +28,16 @@ class DataIndexCommand extends Command
      */
     private $neo;
 
-    public function __construct(EsClient $es, NeoClient $neo)
+    /**
+     * @var StateService
+     */
+    private $state;
+
+    public function __construct(EsClient $es, NeoClient $neo, StateService $state)
     {
         $this->es = $es;
         $this->neo = $neo;
+        $this->state = $state;
 
         parent::__construct();
     }
@@ -72,7 +79,7 @@ class DataIndexCommand extends Command
         $response = $this->neo->run("
             MATCH (e:Employee)-[:HAS_POSITION]->(p:Position)
             RETURN e, p.description
-        ");
+        ", null, null, $this->state->get('graph.connection.active', 'green'));
 
         $employees = [];
         foreach ($response->records() as $record) {

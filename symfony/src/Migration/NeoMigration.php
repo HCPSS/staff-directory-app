@@ -29,6 +29,21 @@ class NeoMigration
     private $slugify;
 
     /**
+     * The alias for the Neo4j connection we are working with.
+     *
+     * @var string
+     */
+    private $connectionAlias = 'green';
+
+    /**
+     * Hard coded employee id of the superintendent.
+     *
+     * @todo Move to configuration.
+     * @var string
+     */
+    private $superintendentEmployeeId = 'E07715';
+
+    /**
      * @var array
      */
     private $centralLocations = [
@@ -54,13 +69,19 @@ class NeoMigration
     /**
      * Perform the migration.
      */
-    public function migrate(bool $deleteOld = true)
+    public function migrate($connectionAlias = null, bool $deleteOld = true, int $latency = 100)
     {
-        if ($deleteOld) {
-            $this->graphClient->run('MATCH (n) DETACH DELETE n');
+        $this->samClient->setLatency($latency);
+
+        if ($connectionAlias) {
+            $this->connectionAlias = $connectionAlias;
         }
 
-        $superData = $this->samClient->findOne(['Employee_ID' => 'E07715']);
+        if ($deleteOld) {
+            $this->graphClient->run('MATCH (n) DETACH DELETE n', null, null, $this->connectionAlias);
+        }
+
+        $superData = $this->samClient->findOne(['Employee_ID' => $this->superintendentEmployeeId]);
         $this->createEmployee($superData);
     }
 
@@ -69,14 +90,16 @@ class NeoMigration
      *
      * @param array $data
      */
-    private function createEmployee(array $data)
+    private function createEmployee(array $data, $include_subordinates = true)
     {
         $positionKeys = [
             'Primary_Position', 'Position_2', 'Position_3', 'Position_4',
             'Position_5',
         ];
 
-        $stack = $this->graphClient->stack();
+        $connection = 'blue';
+
+        $stack = $this->graphClient->stack(null, $this->connectionAlias);
 
         $stack->push("CREATE (e:Employee {
             display_name: {display_name},
@@ -175,14 +198,16 @@ class NeoMigration
 
         $this->graphClient->runStack($stack);
 
-        $subordinateData = $this->samClient->find([
-            'Primary_Position_Manager' => $data['Employee_ID'],
-        ]);
+        if ($include_subordinates) {
+            $subordinateData = $this->samClient->find([
+                'Primary_Position_Manager' => $data['Employee_ID'],
+            ]);
 
-        if (!empty($subordinateData)) {
-            foreach ($subordinateData as $report) {
-                if ($this->validator->validateEmployee($report)) {
-                    $this->createEmployee($report);
+            if (!empty($subordinateData)) {
+                foreach ($subordinateData as $report) {
+                    if ($this->validator->validateEmployee($report)) {
+                        $this->createEmployee($report);
+                    }
                 }
             }
         }

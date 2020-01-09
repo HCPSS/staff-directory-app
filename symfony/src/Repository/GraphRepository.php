@@ -6,6 +6,7 @@ use GraphAware\Neo4j\Client\ClientInterface;
 use GraphAware\Bolt\Record\RecordView;
 use GraphAware\Bolt\Result\Type\Node;
 use GraphAware\Common\Graph\NodeInterface;
+use App\Service\StateService;
 
 class GraphRepository
 {
@@ -14,9 +15,15 @@ class GraphRepository
      */
     private $client;
 
-    public function __construct(ClientInterface $client)
+    /**
+     * @var string
+     */
+    private $activeConnection;
+
+    public function __construct(ClientInterface $client, StateService $state)
     {
         $this->client = $client;
+        $this->activeConnection = $state->get('graph.connection.active', 'green');
     }
 
     /**
@@ -31,7 +38,7 @@ class GraphRepository
      */
     public function getOneByCypher(string $query, array $params)
     {
-        $response = $this->client->run($query, $params);
+        $response = $this->client->run($query, $params, null, $this->activeConnection);
         $record = $response->firstRecord();
         $node = $record->get($record->keys()[0]);
 
@@ -52,7 +59,7 @@ class GraphRepository
     public function getManyByCypher(string $query, array $params)
     {
         $models = [];
-        $response = $this->client->run($query, $params);
+        $response = $this->client->run($query, $params, null, $this->activeConnection);
 
         foreach ($response->records() as $record) {
             $node = $record->get($record->keys()[0]);
@@ -72,7 +79,7 @@ class GraphRepository
     {
         $response = $this->client->run("
             MATCH p=()-[r:{$relationship}]->() RETURN p
-        ");
+        ", null, null, $this->activeConnection);
 
         $records = $response->records();
 
@@ -96,7 +103,7 @@ class GraphRepository
             OPTIONAL MATCH (d)<-[:IS_DIVISION_OF]-(c)
             RETURN d, p, c
             ORDER BY c.name
-        ", ['slug' => $slug]);
+        ", ['slug' => $slug], null, $this->activeConnection);
 
         $department = $this->nodeToArray($response->firstRecord()->get('d'));
 
@@ -128,7 +135,7 @@ class GraphRepository
                 (mp)<-[:REPORTS_TO]-(sp:Position)<-[:HAS_POSITION]-(se:Employee)
             RETURN me, se
             ORDER BY se.last_name
-        ", ['slug' => $slug]);
+        ", ['slug' => $slug], null, $this->activeConnection);
 
         $staff = [$this->nodeToArray($response->firstRecord()->get('me'))];
         foreach ($response->records() as $record) {
@@ -152,7 +159,7 @@ class GraphRepository
                 (d:Department {slug: {slug}}),
                 (d)-[:IS_HEADED_BY]->(p:Position)-[:IS_LOCATED_AT]->(l:Location)
             RETURN d, l
-        ", ['slug' => $slug]);
+        ", ['slug' => $slug], null, $this->activeConnection);
 
         $dNode = $response->firstRecord()->get('d');
         $lNode = $response->firstRecord()->get('l');
@@ -176,7 +183,7 @@ class GraphRepository
             OPTIONAL MATCH (pd:Department)-[:IS_HEADED_BY]->(:Position)<-[:REPORTS_TO]-(p)
             OPTIONAL MATCH (p)<-[:IS_HEADED_BY]-(hd:Department)
             RETURN p, pd, hd
-        ", ['employee_id' => $employee_id]);
+        ", ['employee_id' => $employee_id], null, $this->activeConnection);
 
         $positions = [];
         foreach ($response->records() as $record) {

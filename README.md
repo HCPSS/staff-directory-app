@@ -20,4 +20,11 @@ individual pages:
 http://localhost:9090/departments \
 http://localhost:9090/department/operations
 
-The Neo4j browser is at: http://localhost:7474
+## Refreshing data
+
+In production production, keep the data up to date with a cron job like this:
+
+```bash
+0 3 * * * docker exec directory_web ./bin/console app:data:refresh 1000 && docker exec directory_web ./bin/console app:data:index
+```
+

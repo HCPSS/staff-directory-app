@@ -3,6 +3,7 @@
 namespace App\Connection;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\RequestOptions;
 
 class SamConnection {
 
@@ -11,9 +12,28 @@ class SamConnection {
      */
     private $client;
 
+    /**
+     * @var integer
+     */
+    private $latency = 100;
+
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
+    }
+
+    /**
+     * Set the latency in ms for communicating with the SAM service. Set to @author banderson
+     * higher number to avoid overloading the sam server.
+     *
+     * @param int $latency
+     * @return self
+     */
+    public function setLatency(int $latency): self
+    {
+        $this->latency = $latency;
+
+        return $this;
     }
 
     /**
@@ -26,7 +46,10 @@ class SamConnection {
     public function find(array $conditions) {
         $uri = '/api/public/search/user';
 
-        $response = $this->client->get($uri, ['query' => ['q' => $conditions]]);
+        $response = $this->client->get($uri, [
+            RequestOptions::QUERY => ['q' => $conditions],
+            RequestOptions::DELAY => $this->latency,
+        ]);
 
         $data = json_decode($response->getBody(), true);
 

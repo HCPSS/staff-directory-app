@@ -1,13 +1,25 @@
 FROM banderson/symfony
 
+ENV APP_ENV=dev \
+	NEO4J_AUTH_USERNAME=neo4j \
+	NEO4J_AUTH_PASSWORD=tHis1snotAgOodpa5Sw0rd \
+	MONGO_URL=mongodb://root:example@mongo:27017/?authSource=auth-db
+
 RUN apt-get update \
 	&& apt-get install -y \
 		php-bcmath \
+		php-pear \
+		php-dev \
 		zip \
-		unzip
+		unzip \
+	&& pecl install mongodb
 
 COPY docker/web/000-default.conf /etc/apache2/sites-available/000-default.conf
 COPY docker/web/php.ini /etc/php/7.2/apache2/php.ini
+COPY docker/web/mongodb.ini /etc/php/7.2/mods-available/mongodb.ini
+
+RUN ln -s /etc/php/7.2/mods-available/mongodb.ini /etc/php/7.2/apache2/conf.d/20-mongodb.ini \
+	&& ln -s /etc/php/7.2/mods-available/mongodb.ini /etc/php/7.2/cli/conf.d/20-mongodb.ini
 
 # Symfony project structure.
 COPY symfony/bin              /var/www/symfony/bin
@@ -21,6 +33,6 @@ COPY symfony/public/index.php /var/www/symfony/public/index.php
 
 RUN mkdir -p /var/www/symfony/var \
 	&& composer install -d /var/www/symfony \
-  && chown -R www-data:www-data /var/www/symfony
+	&& chown -R www-data:www-data /var/www/symfony
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
