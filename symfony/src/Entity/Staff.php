@@ -322,6 +322,7 @@ class Staff implements CardableInterface
             'Superintendent' => -40,
             'Chief' => -35,
             'Director' => -30,
+            'Benefits Coordinator' => -26,
             'Manager' => -25,
             'General Counsel' => -20,
             'Coordinator' => -15,
