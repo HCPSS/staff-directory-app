@@ -340,7 +340,7 @@ class Staff implements CardableInterface
         }
         
         $modifiers = [
-            'Assistant' => 1,
+            //'Assistant' => 1,
             'Acting' => 1,
             'Executive' => -1,
         ];
