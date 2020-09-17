@@ -328,6 +328,8 @@ class Staff implements CardableInterface
             'Coordinator' => -15,
             'Officer' => -10,
             'Instructional Facilitator' => -5,
+            'Print Services Assistant' => -4,
+            'Specialist Print Services' => -3,
             'Administrator' => 5,
         ];
         
