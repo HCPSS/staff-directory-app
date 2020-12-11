@@ -5,6 +5,10 @@ namespace App\Migration;
 use GraphAware\Neo4j\Client\ClientInterface;
 use App\Connection\SamConnection;
 use App\Service\SlugifyService;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use App\Document\Employee;
+use App\Normalizer\EmployeeNormalizer;
+use App\Document\Position;
 
 class NeoMigration
 {
@@ -27,6 +31,11 @@ class NeoMigration
      * @var SlugifyService
      */
     private $slugify;
+    
+    /**
+     * @var DocumentManager
+     */
+    private $dm;
 
     /**
      * The alias for the Neo4j connection we are working with.
@@ -58,12 +67,13 @@ class NeoMigration
         13,  // Applications and Research Lab (ARL)
     ];
 
-    public function __construct(ClientInterface $graphClient, SamConnection $samClient, Validator $validator, SlugifyService $slugify)
+    public function __construct(ClientInterface $graphClient, SamConnection $samClient, Validator $validator, SlugifyService $slugify, DocumentManager $dm)
     {
         $this->graphClient = $graphClient;
         $this->samClient = $samClient;
         $this->validator = $validator;
         $this->slugify = $slugify;
+        $this->dm = $dm;
     }
 
     /**
@@ -100,7 +110,25 @@ class NeoMigration
         $connection = 'default';
 
         $stack = $this->graphClient->stack(null, $this->connectionAlias);
+        
+        $employee = EmployeeNormalizer::normalize((new Employee())
+            ->setId($data['Employee_ID'])
+            ->setFirstName($data['First_Name'])
+            ->setLastName($data['Last_Name'])
+            ->setDisplayName($data['Display_Name'])
+            ->setPhone($data['Work_Phone'])
+            ->setEmail($data['mail'])
+        , false);
+        
+        $override = $this->dm
+            ->getRepository(Employee::class)
+            ->find($data['Employee_ID']);
 
+        if ($override) {
+            $filter = EmployeeNormalizer::normalize($override);
+            $employee = array_merge($employee, $filter);
+        }
+            
         $stack->push("CREATE (e:Employee {
             display_name: {display_name},
             employee_id:  {employee_id},
@@ -108,14 +136,7 @@ class NeoMigration
             last_name:    {last_name},
             email:        {email},
             phone:        {phone}
-        })", [
-            'employee_id'  => $data['Employee_ID'],
-            'display_name' => $data['Display_Name'],
-            'first_name'   => $data['First_Name'],
-            'last_name'    => $data['Last_Name'],
-            'email'        => $data['mail'],
-            'phone'        => $data['Work_Phone'],
-        ]);
+        })", $employee);
 
         foreach ($positionKeys as $weight => $positionKey) {
             if ($data[$positionKey . '_Job_Description']) {
@@ -136,6 +157,12 @@ class NeoMigration
 
                 // Create the position and relate it to the location and
                 // employee all at once.
+                if ($filter = $this->dm->getRepository(Position::class)->find($positionId)) {
+                    if ($description = $filter->getDescription()) {
+                        $jobTitle = $description;
+                    }
+                }
+                
                 $stack->push("
                     MATCH (e:Employee),(l:Location)
                     WHERE e.employee_id = {employee_id} AND l.code = {code}

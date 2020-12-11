@@ -13,6 +13,9 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use Elastica\Result;
+use Doctrine\ODM\MongoDB\DocumentManager;
+use App\Document\EmployeeFilter;
+use App\Normalizer\EmployeeFilterNormalizer;
 
 class SearchController extends AbstractController
 {
@@ -20,10 +23,16 @@ class SearchController extends AbstractController
      * @var Client
      */
     private $es;
+    
+    /**
+     * @var DocumentManager
+     */
+    private $dm;
 
-    public function __construct(Client $es)
+    public function __construct(Client $es, DocumentManager $dm)
     {
         $this->es = $es;
+        $this->dm = $dm;
     }
 
     /**
@@ -72,6 +81,7 @@ class SearchController extends AbstractController
             $search->setQuery($query);
 
             $resultSet = $search->search();
+            
             $results = array_map(function (Result $result) {
                 return $result->getSource();
             }, $resultSet->getResults());

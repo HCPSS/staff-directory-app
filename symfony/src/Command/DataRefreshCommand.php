@@ -37,6 +37,10 @@ class DataRefreshCommand extends Command
             ->setDescription('Refresh app data.');
     }
 
+    /**
+     * @param NeoMigration $migrator
+     * @param StateService $state
+     */
     public function __construct(NeoMigration $migrator, StateService $state)
     {
         $this->migrator = $migrator;
