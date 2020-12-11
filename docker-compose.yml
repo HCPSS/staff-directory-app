@@ -2,29 +2,16 @@
 version: '2'
 services:
 
-  graph_green:
-    image: neo4j
-    container_name: directory_graph_green
+  graph:
+    image: neo4j:3.5
+    container_name: directory_graph
     restart: always
     volumes:
-      - ./.node_data_green:/data
-      - ./.node_logs_green:/logs
+      - ./.node_data:/data
+      - ./.node_logs:/logs
     ports:
       - 7474:7474
       - 7687:7687
-    environment:
-      NEO4J_AUTH: ${NEO4J_AUTH_USERNAME}/${NEO4J_AUTH_PASSWORD}
-
-  graph_blue:
-    image: neo4j
-    container_name: directory_graph_blue
-    restart: always
-    volumes:
-      - ./.node_data_blue:/data
-      - ./.node_logs_blue:/logs
-    ports:
-      - 7475:7474
-      - 7688:7687
     environment:
       NEO4J_AUTH: ${NEO4J_AUTH_USERNAME}/${NEO4J_AUTH_PASSWORD}
 

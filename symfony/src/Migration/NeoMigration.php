@@ -33,7 +33,7 @@ class NeoMigration
      *
      * @var string
      */
-    private $connectionAlias = 'green';
+    private $connectionAlias = 'default';
 
     /**
      * Hard coded employee id of the superintendent.
@@ -97,7 +97,7 @@ class NeoMigration
             'Position_5',
         ];
 
-        $connection = 'blue';
+        $connection = 'default';
 
         $stack = $this->graphClient->stack(null, $this->connectionAlias);
 

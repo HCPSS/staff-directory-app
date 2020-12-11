@@ -79,7 +79,7 @@ class DataIndexCommand extends Command
         $response = $this->neo->run("
             MATCH (e:Employee)-[:HAS_POSITION]->(p:Position)
             RETURN e, p.description
-        ", null, null, $this->state->get('graph.connection.active', 'green'));
+        ", null, null, $this->state->get('graph.connection.active'));
 
         $employees = [];
         foreach ($response->records() as $record) {

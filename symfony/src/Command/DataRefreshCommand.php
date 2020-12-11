@@ -53,13 +53,10 @@ class DataRefreshCommand extends Command
     {
         $start = time();
 
-        $activeConnection = $this->state->get('graph.connection.active', 'green');
-        $passiveConnection = $activeConnection == 'green' ? 'blue' : 'green';
+        $activeConnection = $this->state->get('graph.connection.active');
         $latency = $input->getArgument('latency');
 
-        $this->migrator->migrate($passiveConnection, true, $latency);
-
-        $this->state->set('graph.connection.active', $passiveConnection);
+        $this->migrator->migrate($activeConnection, true, $latency);
 
         $duration = time() - $start;
 

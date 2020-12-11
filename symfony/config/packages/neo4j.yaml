@@ -2,22 +2,10 @@ neo4j:
     connections:
         default:
             scheme: bolt
-            host: graph_green
-            port: 7687
-            username: '%env(NEO4J_AUTH_USERNAME)%'
-            password: '%env(NEO4J_AUTH_PASSWORD)%'
-        green:
-            scheme: bolt
-            host: graph_green
-            port: 7687
-            username: '%env(NEO4J_AUTH_USERNAME)%'
-            password: '%env(NEO4J_AUTH_PASSWORD)%'
-        blue:
-            scheme: bolt
-            host: graph_blue
+            host: graph
             port: 7687
             username: '%env(NEO4J_AUTH_USERNAME)%'
             password: '%env(NEO4J_AUTH_PASSWORD)%'
     clients:
         default:
-            connections: [green, blue]
+            connections: [default]

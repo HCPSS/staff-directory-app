@@ -23,7 +23,7 @@ class GraphRepository
     public function __construct(ClientInterface $client, StateService $state)
     {
         $this->client = $client;
-        $this->activeConnection = $state->get('graph.connection.active', 'green');
+        $this->activeConnection = $state->get('graph.connection.active');
     }
 
     /**
