@@ -9,6 +9,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use App\Document\Employee;
 use App\Normalizer\EmployeeNormalizer;
 use App\Document\Position;
+use App\Document\Filter;
 
 class NeoMigration
 {
@@ -51,6 +52,11 @@ class NeoMigration
      * @var string
      */
     private $superintendentEmployeeId = 'E07715';
+    
+    /**
+     * @var Filter[]
+     */
+    private $filters;
 
     /**
      * @var array
@@ -74,6 +80,12 @@ class NeoMigration
         $this->validator = $validator;
         $this->slugify = $slugify;
         $this->dm = $dm;
+        
+        $filters = $this->dm->getRepository(Filter::class)->findAll();
+        $this->filters = array_reduce($filters, function ($carry, $item) {
+            $carry[$item->getId()] = $item;
+            return $carry;
+        }, []);
     }
 
     /**
@@ -106,28 +118,12 @@ class NeoMigration
             'Primary_Position', 'Position_2', 'Position_3', 'Position_4',
             'Position_5',
         ];
-
-        $connection = 'default';
-
-        $stack = $this->graphClient->stack(null, $this->connectionAlias);
         
-        $employee = EmployeeNormalizer::normalize((new Employee())
-            ->setId($data['Employee_ID'])
-            ->setFirstName($data['First_Name'])
-            ->setLastName($data['Last_Name'])
-            ->setDisplayName($data['Display_Name'])
-            ->setPhone($data['Work_Phone'])
-            ->setEmail($data['mail'])
-        , false);
-        
-        $override = $this->dm
-            ->getRepository(Employee::class)
-            ->find($data['Employee_ID']);
-
-        if ($override) {
-            $filter = EmployeeNormalizer::normalize($override);
-            $employee = array_merge($employee, $filter);
+        if (array_key_exists($data['Employee_ID'], $this->filters)) {
+            $data = array_merge($data, $this->filters[$data['Employee_ID']]->getDocument());
         }
+        
+        $stack = $this->graphClient->stack(null, $this->connectionAlias);
             
         $stack->push("CREATE (e:Employee {
             display_name: {display_name},
@@ -136,7 +132,14 @@ class NeoMigration
             last_name:    {last_name},
             email:        {email},
             phone:        {phone}
-        })", $employee);
+        })", [
+            'display_name' => $data['Display_Name'],
+            'employee_id' => $data['Employee_ID'],
+            'first_name' => $data['First_Name'],
+            'last_name' => $data['Last_Name'],
+            'email' => $data['mail'],
+            'phone' => $data['Work_Phone'],
+        ]);
 
         foreach ($positionKeys as $weight => $positionKey) {
             if ($data[$positionKey . '_Job_Description']) {
@@ -154,14 +157,6 @@ class NeoMigration
                     code: {code},
                     name: {name}
                 })", ['code' => $locationCode, 'name' => $location]);
-
-                // Create the position and relate it to the location and
-                // employee all at once.
-                if ($filter = $this->dm->getRepository(Position::class)->find($positionId)) {
-                    if ($description = $filter->getDescription()) {
-                        $jobTitle = $description;
-                    }
-                }
                 
                 $stack->push("
                     MATCH (e:Employee),(l:Location)

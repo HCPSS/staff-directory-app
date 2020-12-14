@@ -7,7 +7,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 /**
  * @MongoDB\Document
  */
-class Position
+class Filter
 {
     /**
      * @MongoDB\Id(strategy="NONE", type="string")
@@ -15,9 +15,9 @@ class Position
     protected $id;
     
     /**
-     * @MongoDB\Field(type="string")
+     * @MongoDB\Field(type="hash")
      */
-    protected $description;
+    protected $document;
     
     /**
      * @return string
@@ -25,14 +25,6 @@ class Position
     public function getId(): ?string
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getDescription(): ?string
-    {
-        return $this->description;
     }
 
     /**
@@ -45,15 +37,21 @@ class Position
         
         return $this;
     }
-
+    
     /**
-     * @param mixed $description
+     * @return array|NULL
+     */
+    public function getDocument(): ?array
+    {
+        return $this->document;
+    }
+    
+    /**
+     * @param array $document
      * @return self
      */
-    public function setDescription($description): self
+    public function setDocument(array $document): self
     {
-        $this->description = $description;
-        
-        return $this;
+        $this->document = $document;
     }
 }
