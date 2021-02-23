@@ -45,20 +45,40 @@ class SamConnection {
      */
     public function find(array $conditions) {
         $uri = '/api/public/search/user';
+        $page = 0;
+        $page_size = 100;
+        $data = [];
 
-        $response = $this->client->get($uri, [
-            RequestOptions::QUERY => ['q' => $conditions],
-            RequestOptions::DELAY => $this->latency,
-        ]);
-
-        $data = json_decode($response->getBody(), true);
-
-        if (!$data || !$data['success']) {
-            // Something went wrong.
-            throw new \Exception("Could not get data for {$uri}.");
+        while ($page !== false) {
+            $response = $this->client->get($uri, [
+                RequestOptions::QUERY => [
+                    'q' => $conditions,
+                    'page' => $page,
+                    'page_size' => $page_size,
+                ],
+                RequestOptions::DELAY => $this->latency,
+            ]);
+    
+            $response = json_decode($response->getBody(), true);
+    
+            if (!$response || !$response['success']) {
+                // Something went wrong.
+                throw new \Exception("Could not get data for {$uri}.");
+            }
+            
+            if (!empty($response['message'])) {
+                $data = array_merge($data, $response['message']);
+            }
+            
+            if (count($response['message']) == $page_size) {
+                // There might be another page.
+                $page++;
+            } else {
+                $page = false;
+            }
         }
 
-        return $data['message'];
+        return $data;
     }
 
     /**

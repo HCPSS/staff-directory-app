@@ -52,6 +52,7 @@ services:
     restart: always
     volumes:
       - ./symfony:/var/www/symfony
+      - ./docker/web/php.ini-development:/usr/local/etc/php/php.ini
     ports:
       - 9090:80
     environment:
