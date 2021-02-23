@@ -53,5 +53,7 @@ class Filter
     public function setDocument(array $document): self
     {
         $this->document = $document;
+        
+        return $this;
     }
 }
