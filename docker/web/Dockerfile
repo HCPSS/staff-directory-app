@@ -1,5 +1,9 @@
 FROM banderson/symfony:base
 
+LABEL maintainer="brendan_anderson@hcpss.org"
+LABEL vendor="Howard County Public School System"
+LABEL org.hcpss.directory.version="3.0.0"
+
 ENV APP_ENV=dev \
 	NEO4J_AUTH_USERNAME=neo4j \
 	NEO4J_AUTH_PASSWORD=tHis1snotAgOodpa5Sw0rd \

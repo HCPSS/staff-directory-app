@@ -44,7 +44,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${ME_CONFIG_MONGODB_ADMINPASSWORD}
 
   web:
-    image: reg.hcpss.org/directory/web:glamorous_cheetah
+    image: reg.hcpss.org/directory/web:3.0.0
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile
