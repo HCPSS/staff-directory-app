@@ -44,7 +44,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${ME_CONFIG_MONGODB_ADMINPASSWORD}
 
   web:
-    image: reg.hcpss.org/directory/web:3.0.0
+    image: reg.hcpss.org/directory/web:3.0.1
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile

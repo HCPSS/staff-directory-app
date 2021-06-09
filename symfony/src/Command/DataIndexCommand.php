@@ -77,8 +77,8 @@ class DataIndexCommand extends Command
     private function getAllEmployees(): array
     {
         $response = $this->neo->run("
-            MATCH (e:Employee)-[:HAS_POSITION]->(p:Position)
-            RETURN e, p.description
+            MATCH (e:Employee)-[:HAS_POSITION]->(p:Position)-[:IS_LOCATED_AT]->(l:Location)
+            RETURN e, p.description, l.name
         ", null, null, $this->state->get('graph.connection.active'));
 
         $employees = [];
@@ -86,12 +86,13 @@ class DataIndexCommand extends Command
             $eNode = $record->get('e');
             if (!in_array($eNode->identity(), array_keys($employees))) {
                 $id = $eNode->identity();
-
+                
                 $employees[$id] = $eNode->asArray();
                 $employees[$id]['id'] = $eNode->identity();
             }
 
             $employees[$id]['positions'][] = $record->get('p.description');
+            $employees[$id]['locations'][] = $record->get('l.name');
         }
 
         return array_map(function ($employee) {
@@ -134,7 +135,8 @@ class DataIndexCommand extends Command
         $out .= "\n";
         $out .= $e['phone'] . "\n";
         $out .= $e['email'] . "\n";
-        $out .= implode("\n", $e['positions']);
+        $out .= implode("\n", $e['positions']) . "\n";
+        $out .= implode("\n", $e['locations']);
 
         return $out;
     }

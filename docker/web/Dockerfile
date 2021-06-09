@@ -2,7 +2,7 @@ FROM banderson/symfony:base
 
 LABEL maintainer="brendan_anderson@hcpss.org"
 LABEL vendor="Howard County Public School System"
-LABEL org.hcpss.directory.version="3.0.0"
+LABEL org.hcpss.directory.version="3.0.1"
 
 ENV APP_ENV=dev \
 	NEO4J_AUTH_USERNAME=neo4j \
