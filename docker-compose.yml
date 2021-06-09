@@ -44,7 +44,7 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${ME_CONFIG_MONGODB_ADMINPASSWORD}
 
   web:
-    image: reg.hcpss.org/directory/web:3.0.1
+    image: reg.hcpss.org/directory/web:3.0.2
     build:
       context: .
       dockerfile: ./docker/web/Dockerfile
@@ -55,8 +55,14 @@ services:
       - ./docker/web/php.ini-development:/usr/local/etc/php/php.ini
     ports:
       - 9090:80
+      - 8080:8080
     environment:
       APP_ENV: dev
       NEO4J_AUTH_USERNAME: ${NEO4J_AUTH_USERNAME}
       NEO4J_AUTH_PASSWORD: ${NEO4J_AUTH_PASSWORD}
       MONGO_URL: mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongo:27017/?authSource=admin
+
+  cron:
+    image: reg.hcpss.org/directory/cron:1.0.0
+    container_name: directory_cron
+    build: docker/cron

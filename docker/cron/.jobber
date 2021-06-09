@@ -1,0 +1,18 @@
+version: 1.4
+
+prefs:
+  logPath: /home/jobberuser/jobber.log
+  runLog:
+    type: file
+    path: /home/jobberuser/runlog
+    maxFileLen: 100m
+    maxHistories: 2
+
+jobs:
+  DataRefresh:
+    cmd: curl http://web:8080/api/data-refresh
+    time: 0 30 3
+  IndexRefresh:
+    cmd: curl http://web:8080/api/data-index
+    time: 0 0 
+ 
